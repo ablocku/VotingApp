@@ -1,4 +1,4 @@
 # VotingApp
  Online voting system for elections
 
- Team: Harșa Andrei, Staicu Octavian, Barbu Iulia, Zenoveiov Andrei
+ Team: Harșa Andrei, Staicu Octavian, Barbu Iulia, Guță George, Zenoveiov Andrei
