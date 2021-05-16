@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "809080595264",
+    "firebase_url": "https://votingapp-eb64d-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "votingapp-eb64d",
+    "storage_bucket": "votingapp-eb64d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809080595264:android:34f7e615484c672117d0a5",
+        "android_client_info": {
+          "package_name": "ro.unibuc.votingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809080595264-df8lr9vr10bmfgfho207c8la7r9dv5lk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaQaNM2QYwhhdbL5xc6Nu2_P1-y3cqTm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809080595264-df8lr9vr10bmfgfho207c8la7r9dv5lk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

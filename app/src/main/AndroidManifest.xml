@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ro.unibuc.votingapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name="ro.unibuc.votingapp.VotingApplication"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="ro.unibuc.votingapp.presentation.view.RecyclerViewActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|colorMode" />
+        <activity
+            android:name="ro.unibuc.votingapp.presentation.view.CreditsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|colorMode"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.NoBackground" />
+        <activity
+            android:name="ro.unibuc.votingapp.presentation.view.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|colorMode"
+            android:label="@string/title_activity_main"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="ro.unibuc.votingapp.presentation.view.RegisterActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|colorMode"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="ro.unibuc.votingapp.presentation.view.LoginActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|colorMode"
+            android:launchMode="singleInstance"
+            android:screenOrientation="sensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="ro.unibuc.votingapp.presentation.VotingAppReplacedBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+        <service android:name="ro.unibuc.votingapp.presentation.VotingAppService" />
+    </application>
+</manifest>
