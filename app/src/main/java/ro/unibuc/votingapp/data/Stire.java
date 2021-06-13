@@ -11,7 +11,6 @@ import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "Stire",primaryKeys = {"idStire", "idAlegere"}, foreignKeys = @ForeignKey(entity = Alegere.class, parentColumns = "idAlegere", childColumns = "idAlegere"))
 public final class Stire {
-    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "idAlegere")
     @SerializedName("idAlegere")
     @Expose
