@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public final class VotingAppViewModel extends AndroidViewModel {
     private static FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
 
-    public VotingAppViewModel(Application application ) {//AndroidViewModel extinde ViewModel si ne permite sa avem acest prototip in constructor
+    public VotingAppViewModel( Application application ) {//AndroidViewModel extinde ViewModel si ne permite sa avem acest prototip in constructor
         super( application );
         //Todo
     }

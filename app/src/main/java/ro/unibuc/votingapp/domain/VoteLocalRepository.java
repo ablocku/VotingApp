@@ -16,21 +16,21 @@ public abstract class VoteLocalRepository {
         //empty constructor for modifying access
     }
 
-    protected abstract LiveData<List<Candidat>> getCandidati(String idAlegere);
+    protected abstract LiveData < List < Candidat > > getCandidati( String idAlegere );
 
-    protected abstract LiveData<List<Alegere>> getAlegeri(String idLocatie);
+    protected abstract LiveData < List < Alegere > > getAlegeri( String idLocatie );
 
-    protected abstract LiveData<List<Locatie>> getLocatii();
+    protected abstract LiveData < List < Locatie > > getLocatii();
 
-    protected abstract LiveData<List<Stire>> getStiri(String idAlegere);
+    protected abstract LiveData < List < Stire > > getStiri( String idAlegere );
 
-    protected abstract void insertLocatie(Locatie locatie);
+    protected abstract void insertLocatie( Locatie locatie );
 
-    protected abstract void insertAlegere(Alegere alegere);
+    protected abstract void insertAlegere( Alegere alegere );
 
-    protected abstract void insertCandidat(Candidat candidat);
+    protected abstract void insertCandidat( Candidat candidat );
 
-    protected abstract void insertVot(VotAnonim votAnonim);
+    protected abstract void insertVot( VotAnonim votAnonim );
 
-    protected abstract void insertStire(Stire stire);
+    protected abstract void insertStire( Stire stire );
 }

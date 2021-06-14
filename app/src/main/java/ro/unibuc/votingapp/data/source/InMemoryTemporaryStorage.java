@@ -6,11 +6,11 @@ import ro.unibuc.votingapp.data.VotAnonim;
 
 
 final class InMemoryTemporaryStorage {
-    private static final LinkedList<VotAnonim> q = new LinkedList<>();
+    private static final LinkedList < VotAnonim > q = new LinkedList <>();
     private static int nrOfElements = 0;
 
-    void addInMemory(VotAnonim votAnonim) {
-        q.add(votAnonim);
+    void addInMemory( VotAnonim votAnonim ) {
+        q.add( votAnonim );
         nrOfElements++;
     }
 

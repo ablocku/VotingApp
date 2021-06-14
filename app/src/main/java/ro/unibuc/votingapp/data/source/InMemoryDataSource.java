@@ -13,8 +13,8 @@ public final class InMemoryDataSource extends VoteInMemoryRepository {
     }
 
     @Override
-    protected void addInMemory(VotAnonim votAnonim) {
-        inMemoryTemporaryStorage.addInMemory(votAnonim);
+    protected void addInMemory( VotAnonim votAnonim ) {
+        inMemoryTemporaryStorage.addInMemory( votAnonim );
     }
 
     @Override

@@ -26,7 +26,7 @@ public final class InformalPollsFragment extends Fragment {
         return root;
     }
 
-    public InformalPollsFragment(int contentLayoutId ) {
+    public InformalPollsFragment( int contentLayoutId ) {
         super( contentLayoutId );
     }
 }

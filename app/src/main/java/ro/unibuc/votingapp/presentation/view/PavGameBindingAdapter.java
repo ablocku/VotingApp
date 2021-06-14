@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 public final class PavGameBindingAdapter {
-    @BindingAdapter("pollsAdapter")
-    public static void recycleViewSetAdapter(RecyclerView mRecyclerViewGames, RecyclerView.Adapter gamesAdapter) {
-        if (mRecyclerViewGames.getAdapter() == null) {
+    @BindingAdapter ( "pollsAdapter" )
+    public static void recycleViewSetAdapter( RecyclerView mRecyclerViewGames, RecyclerView.Adapter gamesAdapter ) {
+        if ( mRecyclerViewGames.getAdapter() == null ) {
             // set the adapter to the recycler view
-            mRecyclerViewGames.setAdapter(gamesAdapter);
+            mRecyclerViewGames.setAdapter( gamesAdapter );
             // define and set layout manager
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(mRecyclerViewGames.getContext());
-            mRecyclerViewGames.setLayoutManager(layoutManager);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager( mRecyclerViewGames.getContext() );
+            mRecyclerViewGames.setLayoutManager( layoutManager );
         }
     }
 }

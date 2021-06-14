@@ -12,7 +12,7 @@ import java.util.Objects;
 public final class VotingAppViewModelFactory implements ViewModelProvider.Factory {
     private final Application application;
 
-    public VotingAppViewModelFactory(Application application ) {
+    public VotingAppViewModelFactory( Application application ) {
         this.application = application;
     }
 

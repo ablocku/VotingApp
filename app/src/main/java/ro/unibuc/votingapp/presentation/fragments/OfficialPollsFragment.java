@@ -43,7 +43,7 @@ public final class OfficialPollsFragment extends Fragment {
         return super.onCreateView( inflater, container, savedInstanceState );
     }
 
-    public OfficialPollsFragment(int contentLayoutId ) {
+    public OfficialPollsFragment( int contentLayoutId ) {
         super( contentLayoutId );
     }
 
@@ -86,8 +86,6 @@ public final class OfficialPollsFragment extends Fragment {
         sharedPreferences.edit().putString( VotingAppViewModel.getUserName() + "", json ).apply(); ///updatam valoarea in shared preferances
 
     }
-
-
 
 
 }

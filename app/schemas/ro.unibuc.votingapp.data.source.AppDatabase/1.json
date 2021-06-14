@@ -2,52 +2,269 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "da72907d33c8c70c9d3049e01f408e0b",
+    "identityHash": "bc7d6325f5cd2ffb01b7543d2b9f0626",
     "entities": [
       {
-        "tableName": "gameEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`gameId` TEXT NOT NULL, `numeJucator` TEXT NOT NULL, `gameType` INTEGER NOT NULL, `result` INTEGER NOT NULL, PRIMARY KEY(`gameId`, `numeJucator`))",
+        "tableName": "Alegere",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idAlegere` TEXT NOT NULL, `idLocatie` TEXT NOT NULL, `data` TEXT NOT NULL, `tipVot` TEXT NOT NULL, `titlu` TEXT NOT NULL, `incheiat` INTEGER NOT NULL, PRIMARY KEY(`idAlegere`), FOREIGN KEY(`idLocatie`) REFERENCES `Locatie`(`idLocatie`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
-            "fieldPath": "gameId",
-            "columnName": "gameId",
+            "fieldPath": "idAlegere",
+            "columnName": "idAlegere",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "numeJucator",
-            "columnName": "numeJucator",
+            "fieldPath": "idLocatie",
+            "columnName": "idLocatie",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "gameType",
-            "columnName": "gameType",
-            "affinity": "INTEGER",
+            "fieldPath": "data",
+            "columnName": "data",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "result",
-            "columnName": "result",
+            "fieldPath": "tipVot",
+            "columnName": "tipVot",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "titlu",
+            "columnName": "titlu",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "incheiat",
+            "columnName": "incheiat",
             "affinity": "INTEGER",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "gameId",
-            "numeJucator"
+            "idAlegere"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "Locatie",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "idLocatie"
+            ],
+            "referencedColumns": [
+              "idLocatie"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Candidat",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idAlegere` TEXT NOT NULL, `idCandidat` TEXT NOT NULL, `numeCandidat` TEXT NOT NULL, `observatii` TEXT, PRIMARY KEY(`idCandidat`, `idAlegere`), FOREIGN KEY(`idAlegere`) REFERENCES `Alegere`(`idAlegere`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "idAlegere",
+            "columnName": "idAlegere",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idCandidat",
+            "columnName": "idCandidat",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numeCandidat",
+            "columnName": "numeCandidat",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "observatii",
+            "columnName": "observatii",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idCandidat",
+            "idAlegere"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "Alegere",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "idAlegere"
+            ],
+            "referencedColumns": [
+              "idAlegere"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Locatie",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idLocatie` TEXT NOT NULL, `tara` TEXT NOT NULL, `oras` TEXT, `adresa` TEXT, PRIMARY KEY(`idLocatie`))",
+        "fields": [
+          {
+            "fieldPath": "idLocatie",
+            "columnName": "idLocatie",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tara",
+            "columnName": "tara",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "oras",
+            "columnName": "oras",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "adresa",
+            "columnName": "adresa",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idLocatie"
           ],
           "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "Stire",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idAlegere` TEXT NOT NULL, `idStire` TEXT NOT NULL, `titluStire` TEXT NOT NULL, `dataStire` TEXT NOT NULL, `continut` TEXT NOT NULL, PRIMARY KEY(`idStire`, `idAlegere`), FOREIGN KEY(`idAlegere`) REFERENCES `Alegere`(`idAlegere`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "idAlegere",
+            "columnName": "idAlegere",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idStire",
+            "columnName": "idStire",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "titluStire",
+            "columnName": "titluStire",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dataStire",
+            "columnName": "dataStire",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "continut",
+            "columnName": "continut",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idStire",
+            "idAlegere"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "Alegere",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "idAlegere"
+            ],
+            "referencedColumns": [
+              "idAlegere"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "VotAnonim",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idAlegere` TEXT NOT NULL, `idCandidat` TEXT NOT NULL, `idVot` TEXT NOT NULL, PRIMARY KEY(`idCandidat`, `idAlegere`, `idVot`), FOREIGN KEY(`idAlegere`, `idCandidat`) REFERENCES `Candidat`(`idAlegere`, `idCandidat`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "idAlegere",
+            "columnName": "idAlegere",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idCandidat",
+            "columnName": "idCandidat",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idVot",
+            "columnName": "idVot",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idCandidat",
+            "idAlegere",
+            "idVot"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "Candidat",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "idAlegere",
+              "idCandidat"
+            ],
+            "referencedColumns": [
+              "idAlegere",
+              "idCandidat"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'da72907d33c8c70c9d3049e01f408e0b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bc7d6325f5cd2ffb01b7543d2b9f0626')"
     ]
   }
 }
