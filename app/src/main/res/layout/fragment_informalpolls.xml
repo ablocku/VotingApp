@@ -6,12 +6,27 @@
     android:layout_height="match_parent"
     tools:context="ro.unibuc.votingapp.presentation.fragments.InformalPollsFragment">
 
-    <WebView
-        android:id="@+id/webview_example"
+    <TextView
+        android:id="@+id/text_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_8"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabinformal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:contentDescription="@string/floatingButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_dialer" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

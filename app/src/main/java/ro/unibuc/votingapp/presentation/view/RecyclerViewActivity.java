@@ -41,23 +41,31 @@ public final class RecyclerViewActivity extends AppCompatActivity {
 
         //verificam sa vedem daca vrem sa afisam doar pt un anumit utilizator
         Bundle b = getIntent().getExtras();
-        String specificUser = null; // specificUser==null=>afisam toti utilizatorii
         if ( b != null ) {
-            specificUser = b.getString( "specificUser" );
-            setOnClickListenerOnViewCards = false;
-        }
+            String tip = b.getString( "tip" );
+            if ( tip != null ) {
+                if ( tip.equals( "news" ) ) {
 
-        // get the adapter instance
-        final LocationAdapter gamesAdapter = new LocationAdapter( mRecyclerViewGames.getContext(), setOnClickListenerOnViewCards );
+                } else {
+                    String specificLocation = b.getString( "specificLocation" );
+//            setOnClickListenerOnViewCards = false;
 
-        //binding pentru a seta gameAdaptorul la RecyclerView-ul nostru
-        VoteBindingAdapter.recycleViewSetAdapter( mRecyclerViewGames, gamesAdapter );
+                    if ( specificLocation == null ) {
+                        // get the adapter instance
+                        final LocationAdapter gamesAdapter = new LocationAdapter( mRecyclerViewGames.getContext(), setOnClickListenerOnViewCards );
 
-        //obtinem ViewModel
-        VotingAppViewModel votingAppViewModel = new ViewModelProvider( this, new VotingAppViewModelFactory( VotingApplication.getApplication() ) ).get( VotingAppViewModel.class );
+                        //binding pentru a seta gameAdaptorul la RecyclerView-ul nostru
+                        VoteBindingAdapter.recycleViewSetAdapter( mRecyclerViewGames, gamesAdapter );
+
+                        //obtinem ViewModel
+                        VotingAppViewModel votingAppViewModel = new ViewModelProvider( this, new VotingAppViewModelFactory( VotingApplication.getApplication() ) ).get( VotingAppViewModel.class );
 
 //        binding pentru a prelua datele din repository
-        VoteBindingAdapter.RecycleViewLocationBindingGames( mRecyclerViewGames, votingAppViewModel, null );
+                        VoteBindingAdapter.RecycleViewLocationBinding( mRecyclerViewGames, votingAppViewModel );
+                    }
+                }
+            }
+        }
     }
 
     @Override

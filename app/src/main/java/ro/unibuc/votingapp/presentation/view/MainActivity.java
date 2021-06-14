@@ -18,16 +18,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
-import ro.unibuc.votingapp.VotingApplication;
 import ro.unibuc.votingapp.R;
+import ro.unibuc.votingapp.VotingApplication;
 import ro.unibuc.votingapp.presentation.VotingAppFragmentStack;
 import ro.unibuc.votingapp.presentation.VotingAppViewModel;
-import ro.unibuc.votingapp.presentation.fragments.OfficialPollsFragment;
 import ro.unibuc.votingapp.presentation.fragments.HomeFragment;
 import ro.unibuc.votingapp.presentation.fragments.InformalPollsFragment;
+import ro.unibuc.votingapp.presentation.fragments.OfficialPollsFragment;
 import ro.unibuc.votingapp.presentation.notification.VotingAppNotificationFactory;
 import timber.log.Timber;
 
@@ -50,15 +49,6 @@ public final class MainActivity extends AppCompatActivity implements NavigationV
         //toolbarul de sus
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
-
-        //butonul cu care vom accesa panoul cu scoruri
-        FloatingActionButton fab = findViewById( R.id.fab );
-        fab.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick( View view ) {
-                startActivity( new Intent( MainActivity.this, RecyclerViewActivity.class ) );
-            }
-        } );
 
         //navigation drawer
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
@@ -139,10 +129,10 @@ public final class MainActivity extends AppCompatActivity implements NavigationV
             openFragment( new HomeFragment( R.layout.fragment_home ) );
             setTitle( getString( R.string.menu_home ).toUpperCase() );
         } else if ( id == R.id.nav_game ) {
-            openFragment( new OfficialPollsFragment( R.layout.fragment_game ) );
+            openFragment( new OfficialPollsFragment( R.layout.fragment_formalpolls ) );
             setTitle( getString( R.string.menu_polls_oficial ).toUpperCase() );
         } else if ( id == R.id.nav_slideshow ) {
-            openFragment( new InformalPollsFragment( R.layout.fragment_slideshow ) );
+            openFragment( new InformalPollsFragment( R.layout.fragment_informalpolls ) );
             setTitle( getString( R.string.menu_polls_informal ).toUpperCase() );
         }
 

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "bc7d6325f5cd2ffb01b7543d2b9f0626",
+    "identityHash": "c6c2cdc9ccba36b908bd9cfe30507961",
     "entities": [
       {
         "tableName": "Alegere",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idAlegere` TEXT NOT NULL, `idLocatie` TEXT NOT NULL, `data` TEXT NOT NULL, `tipVot` TEXT NOT NULL, `titlu` TEXT NOT NULL, `incheiat` INTEGER NOT NULL, PRIMARY KEY(`idAlegere`), FOREIGN KEY(`idLocatie`) REFERENCES `Locatie`(`idLocatie`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idAlegere` TEXT NOT NULL, `idLocatie` TEXT NOT NULL, `data` TEXT NOT NULL, `tipVot` TEXT NOT NULL, `titlu` TEXT NOT NULL, PRIMARY KEY(`idAlegere`), FOREIGN KEY(`idLocatie`) REFERENCES `Locatie`(`idLocatie`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "idAlegere",
@@ -36,12 +36,6 @@
             "fieldPath": "titlu",
             "columnName": "titlu",
             "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "incheiat",
-            "columnName": "incheiat",
-            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -264,7 +258,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bc7d6325f5cd2ffb01b7543d2b9f0626')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c6c2cdc9ccba36b908bd9cfe30507961')"
     ]
   }
 }

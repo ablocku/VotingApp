@@ -40,22 +40,12 @@ public final class Alegere {
     @NonNull
     private final String titlu;
 
-    @ColumnInfo ( name = "incheiat" )
-    @SerializedName ( "incheiat" )
-    @Expose
-    private boolean incheiat;
-
-    public Alegere( @NonNull String idAlegere, @NonNull String idLocatie, @NonNull String data, @NonNull String tipVot, @NonNull String titlu, boolean incheiat ) {
+    public Alegere( @NonNull String idAlegere, @NonNull String idLocatie, @NonNull String data, @NonNull String tipVot, @NonNull String titlu ) {
         this.idAlegere = idAlegere;
         this.idLocatie = idLocatie;
         this.data = data;
         this.tipVot = tipVot;
         this.titlu = titlu;
-        this.incheiat = incheiat;
-    }
-
-    public void setIncheiat( boolean incheiat ) {
-        this.incheiat = incheiat;
     }
 
     @NonNull
@@ -81,9 +71,5 @@ public final class Alegere {
     @NonNull
     public String getTitlu() {
         return titlu;
-    }
-
-    public boolean isIncheiat() {
-        return incheiat;
     }
 }

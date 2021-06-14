@@ -16,11 +16,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import ro.unibuc.votingapp.R;
 import ro.unibuc.votingapp.presentation.VotingAppService;
 import ro.unibuc.votingapp.presentation.VotingAppViewModel;
+import ro.unibuc.votingapp.presentation.view.RecyclerViewActivity;
 import timber.log.Timber;
 
 public final class OfficialPollsFragment extends Fragment {
@@ -40,7 +42,17 @@ public final class OfficialPollsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView( @NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState ) {
-        return super.onCreateView( inflater, container, savedInstanceState );
+        View root = super.onCreateView( inflater, container, savedInstanceState );
+        //butonul cu care vom accesa panoul cu scoruri
+        FloatingActionButton fab = requireView().findViewById( R.id.fabhome );
+        fab.setOnClickListener( view -> {
+            Intent intent = new Intent( requireContext(), RecyclerViewActivity.class );
+            Bundle bundle = new Bundle();
+            bundle.putString( "tip", "formal" );
+            intent.putExtras( bundle ); //Put your id to your next Intent
+            requireContext().startActivity( intent );//cream o noua activitate pt utilizatorul specific
+        } );
+        return root;
     }
 
     public OfficialPollsFragment( int contentLayoutId ) {

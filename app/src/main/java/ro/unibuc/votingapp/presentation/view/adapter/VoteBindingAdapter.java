@@ -1,5 +1,6 @@
 package ro.unibuc.votingapp.presentation.view.adapter;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.Observer;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import ro.unibuc.votingapp.data.Alegere;
 import ro.unibuc.votingapp.data.Locatie;
 import ro.unibuc.votingapp.presentation.VotingAppViewModel;
 
@@ -24,29 +26,25 @@ public final class VoteBindingAdapter {
         }
     }
 
+    @BindingAdapter ( { "VoteViewModel" } )
+    public static void RecycleViewLocationBinding( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel ) {
+        votingAppViewModel.getLocatii().observeForever( locatii -> {
+            LocationAdapter locationAdapter = ( LocationAdapter ) mRecyclerViewGames.getAdapter();
+            if ( locationAdapter != null )
+                locationAdapter.setGames( locatii );
+        } );
+    }
+
     @BindingAdapter ( { "VoteViewModel", "location" } )
-    public static void RecycleViewLocationBindingGames( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel, @Nullable String location ) {
-        //daca am primit un string null, facem bind cu toate jocurile din repo
-        if ( location == null ) {
-            votingAppViewModel.getLocatii().observeForever( new Observer < List < Locatie > >() {
-                @Override
-                public void onChanged( @Nullable final List < Locatie > locatii ) {
-                    //suntem siguri ca adaptorul nostru este de tipul GameAdapter
-                    LocationAdapter locationAdapter = ( LocationAdapter ) mRecyclerViewGames.getAdapter();
-                    if ( locationAdapter != null )
-                        locationAdapter.setGames( locatii );
-                }
-            } );
-        }  //altfel, afisam jocurile unui anumite utilizator
-//        else {
-//            votingAppViewModel.getSpecificGamesbyUserName( user ).observeForever( new Observer < List < GameEntity > >() {
-//                @Override
-//                public void onChanged( @Nullable final List < GameEntity > games ) {
-//                    GamesAdapter gamesAdapter = ( GamesAdapter ) mRecyclerViewGames.getAdapter();
-//                    if ( gamesAdapter != null )
-//                        gamesAdapter.setGames( games );
-//                }
-//            } );
-//        }
+    public static void RecycleViewAlegereBinding( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel, @NonNull String locationId ) {
+        votingAppViewModel.getAlegeri( locationId ).observeForever( new Observer < List < Alegere > >() {
+            @Override
+            public void onChanged( @Nullable final List < Alegere > alegeri ) {
+                //suntem siguri ca adaptorul nostru este de tipul GameAdapter
+                AlegereAdapter alegereAdapter = ( AlegereAdapter ) mRecyclerViewGames.getAdapter();
+                if ( alegereAdapter != null )
+                    alegereAdapter.setGames( alegeri );
+            }
+        } );
     }
 }
