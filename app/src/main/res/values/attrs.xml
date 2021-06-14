@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="PavGameHomeLoadingView">
+    <declare-styleable name="VoteHomeLoadingView">
         <attr name="loadingColor" format="color" />
     </declare-styleable>
 </resources>

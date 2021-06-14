@@ -18,7 +18,7 @@ import androidx.core.view.animation.PathInterpolatorCompat;
 
 import ro.unibuc.votingapp.R;
 
-public final class PavGameHomeLoadingView extends View {
+public final class VoteHomeLoadingView extends View {
     private RectF rectangle;
     private Paint paint;
     private AnimatorSet animatorSet;
@@ -28,24 +28,24 @@ public final class PavGameHomeLoadingView extends View {
     private float sweepAngle3;
     private ValueAnimator pathAnimator;
 
-    public PavGameHomeLoadingView( Context context ) {
+    public VoteHomeLoadingView( Context context ) {
         super( context );
         initialize( context, null );
     }
 
-    public PavGameHomeLoadingView( Context context, @Nullable AttributeSet attrs ) {
+    public VoteHomeLoadingView( Context context, @Nullable AttributeSet attrs ) {
         super( context, attrs );
         initialize( context, attrs );
     }
 
-    public PavGameHomeLoadingView( Context context, @Nullable AttributeSet attrs, int defStyleAttr ) {
+    public VoteHomeLoadingView( Context context, @Nullable AttributeSet attrs, int defStyleAttr ) {
         super( context, attrs, defStyleAttr );
         initialize( context, attrs );
     }
 
     private void initialize( Context context, AttributeSet attrs ) {
-        TypedArray typedArray = context.obtainStyledAttributes( attrs, R.styleable.PavGameHomeLoadingView );
-        int valueColor = typedArray.getColor( R.styleable.PavGameHomeLoadingView_loadingColor,
+        TypedArray typedArray = context.obtainStyledAttributes( attrs, R.styleable.VoteHomeLoadingView );
+        int valueColor = typedArray.getColor( R.styleable.VoteHomeLoadingView_loadingColor,
                 ContextCompat.getColor( context, android.R.color.black ) );
         typedArray.recycle();
 

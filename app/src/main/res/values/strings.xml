@@ -36,4 +36,5 @@
     <string name="broadcast_s2">Broadcast received my_package_replace intent</string>
     <string name="loggedIn">You are logged in</string>
     <string name="loginRequired">Please Login</string>
+    <string name="noText" translatable="false" />
 </resources>

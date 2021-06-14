@@ -9,10 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ro.unibuc.votingapp.VotingApplication;
 import ro.unibuc.votingapp.R;
+import ro.unibuc.votingapp.VotingApplication;
 import ro.unibuc.votingapp.presentation.VotingAppViewModel;
 import ro.unibuc.votingapp.presentation.VotingAppViewModelFactory;
+import ro.unibuc.votingapp.presentation.view.adapter.LocationAdapter;
+import ro.unibuc.votingapp.presentation.view.adapter.VoteBindingAdapter;
 
 
 public final class RecyclerViewActivity extends AppCompatActivity {
@@ -46,17 +48,16 @@ public final class RecyclerViewActivity extends AppCompatActivity {
         }
 
         // get the adapter instance
-        //TODO
-//        final GamesAdapter gamesAdapter = new GamesAdapter( mRecyclerViewGames.getContext(), setOnClickListenerOnViewCards );
+        final LocationAdapter gamesAdapter = new LocationAdapter( mRecyclerViewGames.getContext(), setOnClickListenerOnViewCards );
 
         //binding pentru a seta gameAdaptorul la RecyclerView-ul nostru
-//        PavGameBindingAdapter.recycleViewSetAdapter( mRecyclerViewGames, gamesAdapter );
+        VoteBindingAdapter.recycleViewSetAdapter( mRecyclerViewGames, gamesAdapter );
 
         //obtinem ViewModel
         VotingAppViewModel votingAppViewModel = new ViewModelProvider( this, new VotingAppViewModelFactory( VotingApplication.getApplication() ) ).get( VotingAppViewModel.class );
 
 //        binding pentru a prelua datele din repository
-//        PavGameBindingAdapter.RecycleViewGamesBindingGames( mRecyclerViewGames, votingAppViewModel, specificUser );
+        VoteBindingAdapter.RecycleViewLocationBindingGames( mRecyclerViewGames, votingAppViewModel, null );
     }
 
     @Override

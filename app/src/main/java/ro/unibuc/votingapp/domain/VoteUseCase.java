@@ -18,23 +18,23 @@ public final class VoteUseCase {
         this.mGameMediator = mediator;
     }
 
-    LiveData < List < Candidat > > getCandidati( String idAlegere ) {
+    public LiveData < List < Candidat > > getCandidati( String idAlegere ) {
         return mGameMediator.getCandidati( idAlegere );
     }
 
-    LiveData < List < Alegere > > getAlegeri( String idLocatie ) {
+    public LiveData < List < Alegere > > getAlegeri( String idLocatie ) {
         return mGameMediator.getAlegeri( idLocatie );
     }
 
-    LiveData < List < Locatie > > getLocatii() {
+    public LiveData < List < Locatie > > getLocatii() {
         return mGameMediator.getLocatii();
     }
 
-    LiveData < List < Stire > > getStiri( String idAlegere ) {
+    public LiveData < List < Stire > > getStiri( String idAlegere ) {
         return mGameMediator.getStiri( idAlegere );
     }
 
-    void insertVot( VotAnonim votAnonim ) {
+    public void insertVot( VotAnonim votAnonim ) {
         mGameMediator.insertVot( votAnonim );
     }
 }
