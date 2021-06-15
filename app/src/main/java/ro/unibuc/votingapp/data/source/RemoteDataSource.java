@@ -22,6 +22,7 @@ import ro.unibuc.votingapp.data.Alegere;
 import ro.unibuc.votingapp.data.Candidat;
 import ro.unibuc.votingapp.data.Locatie;
 import ro.unibuc.votingapp.data.Stire;
+import ro.unibuc.votingapp.data.Utilizator;
 import ro.unibuc.votingapp.data.VotAnonim;
 import ro.unibuc.votingapp.domain.VoteRemoteRepository;
 import timber.log.Timber;
@@ -32,6 +33,44 @@ public final class RemoteDataSource extends VoteRemoteRepository {
     public RemoteDataSource() {
         super();
         api = RetrofitApi.createApi();
+    }
+
+    @Override
+    protected List<Utilizator> getUtilizatori() {
+        List < Utilizator > utilizatori = new ArrayList <>();
+        Gson gson = new Gson();
+        try {
+            JsonObject response = api.getUtilizator().execute().body();
+            if ( response != null ) {
+                for ( String jsonObjectKeys : response.keySet() ) {
+                    JsonObject jsonObject = response.getAsJsonObject( jsonObjectKeys );
+                    Utilizator utilizator = gson.fromJson( jsonObject, Utilizator.class );
+                    if ( utilizator != null )
+                        utilizatori.add( utilizator );
+                }
+            }
+        } catch ( Exception e ) {
+            Timber.d( e, "Something happened" );
+        }
+        return utilizatori;
+    }
+
+    @Override
+    protected void insertUtilizator( Utilizator utilizator ) {
+        Call <Utilizator> call = api.insertUtilizator( utilizator);
+        call.enqueue( new Callback < Utilizator >() {
+            @Override
+            public void onResponse( @NotNull Call < Utilizator > call, @NotNull Response < Utilizator > response ) {
+                Timber.d( "Success inserting user in firebase db" );
+            }
+
+            @Override
+            public void onFailure( @NotNull Call < Utilizator > call, @NotNull Throwable t ) {
+                Timber.d( "fail inserting user in firebase db" );
+                InMemoryDataSource inMemoryDataSource = new InMemoryDataSource();
+                inMemoryDataSource.addUserInMemory( utilizator );
+            }
+        } );
     }
 
     @Override
@@ -173,6 +212,13 @@ public final class RemoteDataSource extends VoteRemoteRepository {
 
         @POST ( "VotAnonim.json" )
         Call < VotAnonim > insertVot( @Body VotAnonim votAnonim );
+
+        @GET ( "Utilizator.json" )
+        Call < JsonObject > getUtilizator();
+
+
+        @POST ( "Utilizator.json" )
+        Call < Utilizator > insertUtilizator( @Body Utilizator utilizator );
 
         static RetrofitApi createApi() {
             OkHttpClient okHttpClient = new OkHttpClient.Builder()

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c6c2cdc9ccba36b908bd9cfe30507961",
+    "identityHash": "b8a97fc1e2cef77834f73c9c7783e269",
     "entities": [
       {
         "tableName": "Alegere",
@@ -253,12 +253,80 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "Utilizator",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idUtilizator` TEXT NOT NULL, `email` TEXT NOT NULL, `dataNastere` TEXT NOT NULL, `serie` TEXT NOT NULL, `nrCI` TEXT NOT NULL, `nume` TEXT NOT NULL, `adresa` TEXT NOT NULL, `locNastere` TEXT NOT NULL, `emitere` TEXT NOT NULL, PRIMARY KEY(`idUtilizator`))",
+        "fields": [
+          {
+            "fieldPath": "idUtilizator",
+            "columnName": "idUtilizator",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dataNastere",
+            "columnName": "dataNastere",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serie",
+            "columnName": "serie",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nrCI",
+            "columnName": "nrCI",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nume",
+            "columnName": "nume",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "adresa",
+            "columnName": "adresa",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "locNastere",
+            "columnName": "locNastere",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "emitere",
+            "columnName": "emitere",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idUtilizator"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c6c2cdc9ccba36b908bd9cfe30507961')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b8a97fc1e2cef77834f73c9c7783e269')"
     ]
   }
 }

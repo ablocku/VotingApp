@@ -9,7 +9,7 @@ import ro.unibuc.votingapp.data.Candidat;
 import ro.unibuc.votingapp.data.Locatie;
 import ro.unibuc.votingapp.data.Stire;
 import ro.unibuc.votingapp.data.VotAnonim;
-
+import ro.unibuc.votingapp.data.Utilizator;
 
 public abstract class VoteLocalRepository {
     protected VoteLocalRepository() {
@@ -33,4 +33,8 @@ public abstract class VoteLocalRepository {
     protected abstract void insertVot( VotAnonim votAnonim );
 
     protected abstract void insertStire( Stire stire );
+
+    protected abstract List < Utilizator > getUtilizator( String CNP );
+
+    protected abstract void insertUtilizator( Utilizator utilizator );
 }
