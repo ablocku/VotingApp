@@ -126,7 +126,7 @@ public final class LocalVoteDataSource extends VoteLocalRepository {
 
     @Dao
     interface VoteDao {
-        @Query ( "SELECT DISTINCT idAlegere, cast (count(*) as text) as idCandidat, numeCandidat, observatii from Candidat group by idAlegere, numeCandidat, observatii having idAlegere=:idAlegere" )
+        @Query ( "SELECT DISTINCT Candidat.idCandidat,Candidat.idAlegere, numeCandidat, cast (count(*) as text) as observatii from Candidat, VotAnonim where Candidat.idCandidat=VotAnonim.idCandidat and Candidat.idAlegere=VotAnonim.idAlegere group by Candidat.idAlegere, numeCandidat, observatii having Candidat.idAlegere=:idAlegere " )
         LiveData < List < Candidat > > getCandidati( String idAlegere );
 
         @Query ( "SELECT * FROM Alegere Where idLocatie=:idLocatie and tipVot=:tip" )

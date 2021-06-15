@@ -41,10 +41,10 @@ public final class NewsAdapter extends RecyclerView.Adapter < NewsAdapter.NewsVi
     public void onBindViewHolder( @NonNull NewsViewHolder newsViewHolder, int i ) {
         if ( mStire != null ) {
             Stire stire = mStire.get( i );
-            newsViewHolder.mTextViewName.setText( stire.getTitluStire() );
-            newsViewHolder.mTextViewResult.setText( stire.getDataStire() );
-            newsViewHolder.mTextViewType.setText( stire.getIdAlegere() );
-            newsViewHolder.mTextViewTotalPoints.setText( stire.getContinut() );
+            newsViewHolder.mTextViewName.setText( String.format( "Titlu stire: %s", stire.getTitluStire() ) );
+            newsViewHolder.mTextViewResult.setText( String.format( "Data stire: %s", stire.getDataStire() ) );
+            newsViewHolder.mTextViewType.setText( String.format( "Id alegere: %s", stire.getIdAlegere() ) );
+            newsViewHolder.mTextViewTotalPoints.setText( String.format( "Continut: %s", stire.getContinut() ) );
 
             newsViewHolder.mTextViewName.setTextColor( itemView.getResources().getColor( R.color.colorAccent, context.getTheme() ) );
             newsViewHolder.mTextViewType.setTextColor( itemView.getResources().getColor( R.color.colorAccent, context.getTheme() ) );

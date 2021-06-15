@@ -41,10 +41,10 @@ public final class AlegereAdapter extends RecyclerView.Adapter < AlegereAdapter.
     public void onBindViewHolder( @NonNull AlegereViewHolder alegereViewHolder, int i ) {
         if ( mAlegere != null ) {
             Alegere alegere = mAlegere.get( i );
-            alegereViewHolder.mTextViewName.setText( alegere.getData() );
-            alegereViewHolder.mTextViewResult.setText( alegere.getIdAlegere() );
-            alegereViewHolder.mTextViewType.setText( alegere.getTipVot() );
-            alegereViewHolder.mTextViewTotalPoints.setText( alegere.getTitlu() );
+            alegereViewHolder.mTextViewName.setText( String.format( "Data alegere: %s", alegere.getData() ) );
+            alegereViewHolder.mTextViewResult.setText( String.format( "Id alegere: %s", alegere.getIdAlegere() ) );
+            alegereViewHolder.mTextViewType.setText( String.format( "Tip vot: %s", alegere.getTipVot() ) );
+            alegereViewHolder.mTextViewTotalPoints.setText( String.format( "Titlu alegere: %s", alegere.getTitlu() ) );
 
             alegereViewHolder.mTextViewName.setTextColor( itemView.getResources().getColor( R.color.colorAccent, context.getTheme() ) );
             alegereViewHolder.mTextViewType.setTextColor( itemView.getResources().getColor( R.color.colorAccent, context.getTheme() ) );

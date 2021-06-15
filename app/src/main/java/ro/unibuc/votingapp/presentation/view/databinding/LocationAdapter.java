@@ -43,10 +43,10 @@ public final class LocationAdapter extends RecyclerView.Adapter < LocationAdapte
     public void onBindViewHolder( @NonNull LocationViewHolder locationViewHolder, int i ) {
         if ( mLocatie != null ) {
             Locatie locatie = mLocatie.get( i );
-            locationViewHolder.mTextViewName.setText( locatie.getAdresa() );
-            locationViewHolder.mTextViewResult.setText( locatie.getIdLocatie() );
-            locationViewHolder.mTextViewType.setText( locatie.getOras() );
-            locationViewHolder.mTextViewTotalPoints.setText( locatie.getTara() );
+            locationViewHolder.mTextViewName.setText( String.format( "Adresa: %s", locatie.getAdresa() ) );
+            locationViewHolder.mTextViewResult.setText( String.format( "Id locatie: %s", locatie.getIdLocatie() ) );
+            locationViewHolder.mTextViewType.setText( String.format( "Oras: %s", locatie.getOras() ) );
+            locationViewHolder.mTextViewTotalPoints.setText( String.format( "Tara: %s", locatie.getTara() ) );
 
             locationViewHolder.mTextViewName.setTextColor( itemView.getResources().getColor( R.color.colorAccent, context.getTheme() ) );
             locationViewHolder.mTextViewType.setTextColor( itemView.getResources().getColor( R.color.colorAccent, context.getTheme() ) );

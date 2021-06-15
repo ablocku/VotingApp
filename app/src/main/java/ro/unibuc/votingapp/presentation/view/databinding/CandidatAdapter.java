@@ -10,10 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import ro.unibuc.votingapp.R;
 import ro.unibuc.votingapp.data.Candidat;
+import ro.unibuc.votingapp.data.VotAnonim;
+import ro.unibuc.votingapp.domain.VoteDependencyProvider;
 
 public final class CandidatAdapter extends RecyclerView.Adapter < CandidatAdapter.CandidatViewHolder > {
 
@@ -38,10 +41,10 @@ public final class CandidatAdapter extends RecyclerView.Adapter < CandidatAdapte
     public void onBindViewHolder( @NonNull CandidatViewHolder candidatViewHolder, int i ) {
         if ( mCandidat != null ) {
             Candidat candidat = mCandidat.get( i );
-            candidatViewHolder.mTextViewName.setText( candidat.getIdAlegere() );
-            candidatViewHolder.mTextViewResult.setText( candidat.getIdCandidat() );
-            candidatViewHolder.mTextViewType.setText( candidat.getNumeCandidat() );
-            candidatViewHolder.mTextViewTotalPoints.setText( candidat.getObservatii() );
+            candidatViewHolder.mTextViewName.setText( String.format( "id alegere:%s", candidat.getIdAlegere() ) );
+            candidatViewHolder.mTextViewResult.setText( String.format( "id candidat: %s", candidat.getIdCandidat() ) );
+            candidatViewHolder.mTextViewType.setText( String.format( "Nume candidat: %s", candidat.getNumeCandidat() ) );
+            candidatViewHolder.mTextViewTotalPoints.setText( String.format( "Nr voturi: %s", candidat.getObservatii() ) );
 
             candidatViewHolder.mTextViewName.setTextColor( itemView.getResources().getColor( R.color.colorAccent, context.getTheme() ) );
             candidatViewHolder.mTextViewType.setTextColor( itemView.getResources().getColor( R.color.colorAccent, context.getTheme() ) );
@@ -50,15 +53,11 @@ public final class CandidatAdapter extends RecyclerView.Adapter < CandidatAdapte
             candidatViewHolder.mCard.setCardBackgroundColor( itemView.getResources().getColor( R.color.colorPrimary, context.getTheme() ) );
 
 
-//            candidatViewHolder.mCard.setOnClickListener( view -> {
-//                Intent intent = new Intent( context, RecyclerViewActivity.class );
-//                Bundle bundle = new Bundle();
-//                bundle.putString( "specificLocation", alegere.getIdLocatie() );
-//                bundle.putString( "tipVot", alegere.getTipVot() );
-//                bundle.putString( "idAlegere", alegere.getIdAlegere() );
-//                intent.putExtras( bundle ); //Put your id to your next Intent
-//                context.startActivity( intent );//cream o noua activitate pt utilizatorul specific
-//            } );
+            candidatViewHolder.mCard.setOnClickListener( view -> {
+                VoteDependencyProvider voteDependencyProvider = new VoteDependencyProvider( context );
+                String timeStamp = new Timestamp( System.currentTimeMillis() ).toString();
+                voteDependencyProvider.provideUseCase().insertVot( new VotAnonim( candidat.getIdAlegere(), candidat.getIdCandidat(), timeStamp ) );
+            } );
 
         } else {
             candidatViewHolder.mTextViewName.setText( R.string.noText );
