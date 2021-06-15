@@ -60,8 +60,8 @@ public final class VotingAppViewModel extends AndroidViewModel {
         return voteUseCase.getStireById( idAlegere, idStire );
     }
 
-    public LiveData < List < Stire > > getStiri( ) {
-        return voteUseCase.getStiri( );
+    public LiveData < List < Stire > > getStiri() {
+        return voteUseCase.getStiri();
     }
 
     public void insertVot( VotAnonim votAnonim ) {

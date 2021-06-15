@@ -1,16 +1,16 @@
 package ro.unibuc.votingapp.data;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 
-@Entity(tableName = "Utilizator", primaryKeys = {"idUtilizator"})
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+@Entity ( tableName = "Utilizator", primaryKeys = { "idUtilizator" } )
 public final class Utilizator {
-    @ColumnInfo( name = "idUtilizator" )
-    @SerializedName( "idUtilizator" )
+    @ColumnInfo ( name = "idUtilizator" )
+    @SerializedName ( "idUtilizator" )
     @Expose
     @NonNull
     private final String idUtilizator;
@@ -63,7 +63,7 @@ public final class Utilizator {
     @NonNull
     private String emitere;
 
-    public Utilizator(String idUtilizator, String email, String dataNastere, String serie, String nrCI, String nume, String adresa, String locNastere, String emitere) {
+    public Utilizator( String idUtilizator, String email, String dataNastere, String serie, String nrCI, String nume, String adresa, String locNastere, String emitere ) {
         this.idUtilizator = idUtilizator;
         this.email = email;
         this.dataNastere = dataNastere;

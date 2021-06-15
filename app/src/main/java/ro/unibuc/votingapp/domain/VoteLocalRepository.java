@@ -24,7 +24,7 @@ public abstract class VoteLocalRepository {
 
     protected abstract Stire getStireById( String idAlegere, String idStire );
 
-    protected abstract LiveData < List < Stire > > getStiri(  );
+    protected abstract LiveData < List < Stire > > getStiri();
 
     protected abstract void insertLocatie( Locatie locatie );
 

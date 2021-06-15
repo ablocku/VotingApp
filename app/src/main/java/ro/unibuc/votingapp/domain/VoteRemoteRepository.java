@@ -15,9 +15,9 @@ public abstract class VoteRemoteRepository {
         //empty constructor for modifying access
     }
 
-    protected abstract List<Utilizator> getUtilizatori();
+    protected abstract List < Utilizator > getUtilizatori();
 
-    protected abstract void insertUtilizator(Utilizator utilizator);
+    protected abstract void insertUtilizator( Utilizator utilizator );
 
     protected abstract void insertLocatie( Locatie locatie );
 

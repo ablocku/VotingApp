@@ -3,8 +3,10 @@
     package="ro.unibuc.votingapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -20,7 +22,7 @@
         <activity
             android:name=".presentation.view.NewsActivity"
             android:label="@string/title_activity_news"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".presentation.view.RecyclerViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|colorMode" />
@@ -29,9 +31,10 @@
             android:configChanges="orientation|screenSize|keyboardHidden|colorMode"
             android:launchMode="singleInstance"
             android:theme="@style/Theme.NoBackground" />
-            <meta-data
-                android:name="com.google.mlkit.vision.DEPENDENCIES"
-                android:value="ocr" />
+
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr" />
 
         <activity
             android:name="ro.unibuc.votingapp.presentation.view.MainActivity"
@@ -60,6 +63,7 @@
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
         </receiver>
+
         <service android:name="ro.unibuc.votingapp.presentation.VotingAppService" />
 
         <service android:name=".presentation.VotingAppService" />
@@ -71,8 +75,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths">
-            </meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"

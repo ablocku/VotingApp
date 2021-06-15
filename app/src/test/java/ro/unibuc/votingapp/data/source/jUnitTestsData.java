@@ -33,7 +33,7 @@ public class jUnitTestsData {
         LocalVoteDataSource.VoteDao voteDao = db.voteDao();
         voteDao.insertUtilizator( utilizator );
 
-        List < Utilizator > l = voteDao.getUtilizator(numeJucator);
+        List < Utilizator > l = voteDao.getUtilizator( numeJucator );
 
         db.close();
 

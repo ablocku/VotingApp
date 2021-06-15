@@ -62,8 +62,8 @@ public final class VoteBindingAdapter {
         } );
     }
 
-    @BindingAdapter ( { "VoteViewModel"} )
-    public static void recycleViewNewsBinding( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel) {
+    @BindingAdapter ( { "VoteViewModel" } )
+    public static void recycleViewNewsBinding( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel ) {
         votingAppViewModel.getStiri().observeForever( stiri -> {
             NewsAdapter newsAdapter = ( NewsAdapter ) mRecyclerViewGames.getAdapter();
             if ( newsAdapter != null )

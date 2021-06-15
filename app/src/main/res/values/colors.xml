@@ -4,8 +4,8 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="galbenDeschis">ffd60a</color>
-    <color name="galbenNormal">ffc300</color>
-    <color name="albastruInchis">001d3d</color>
-    <color name="albastruMarin">003566</color>
+    <color name="galbenDeschis">#ffd60a</color>
+    <color name="galbenNormal">#ffc300</color>
+    <color name="albastruInchis">#001d3d</color>
+    <color name="albastruMarin">#003566</color>
 </resources>

@@ -9,13 +9,13 @@ public abstract class VoteInMemoryRepository {
         //empty constructor for modifying access
     }
 
-    protected abstract void addUserInMemory(Utilizator utilizator);
+    protected abstract void addUserInMemory( Utilizator utilizator );
 
     protected abstract Utilizator removeUserInMemory();
 
     protected abstract int getNrOfUsers();
 
-    protected abstract void addInMemory(VotAnonim votAnonim );
+    protected abstract void addInMemory( VotAnonim votAnonim );
 
     protected abstract VotAnonim removeInMemory();
 

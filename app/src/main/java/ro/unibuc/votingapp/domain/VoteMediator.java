@@ -57,16 +57,17 @@ final class VoteMediator {
     Stire getStireById( String idAlegere, String idStire ) {
         return localRepository.getStireById( idAlegere, idStire );
     }
-    public LiveData < List < Stire > > getStiri(  ) {
-        return localRepository.getStiri(  );
+
+    public LiveData < List < Stire > > getStiri() {
+        return localRepository.getStiri();
     }
 
 
-    protected List <Utilizator> getUtilizator(String CNP ){
-        return localRepository.getUtilizator(CNP);
+    protected List < Utilizator > getUtilizator( String CNP ) {
+        return localRepository.getUtilizator( CNP );
     }
 
-    protected void insertUtilizator( Utilizator utilizator ){
+    protected void insertUtilizator( Utilizator utilizator ) {
         //adaugam votul in firebase db
         postUtilizatorToRemoteRepository( utilizator );
 
@@ -74,7 +75,7 @@ final class VoteMediator {
         localRepository.insertUtilizator( utilizator );
     }
 
-    private void postUtilizatorToRemoteRepository(Utilizator utilizator) {
+    private void postUtilizatorToRemoteRepository( Utilizator utilizator ) {
         //inseram votul in coada repo-ului local
         VoteInMemoryRepository voteInMemoryRepository = new InMemoryDataSource();
         voteInMemoryRepository.addUserInMemory( utilizator );

@@ -48,7 +48,7 @@ public final class RecyclerViewActivity extends AppCompatActivity {
                 if ( tip.equals( "news" ) ) {
                     final NewsAdapter newsAdapter = new NewsAdapter( mRecyclerViewGames.getContext() );
                     VoteBindingAdapter.recycleViewSetNewsAdapter( mRecyclerViewGames, newsAdapter );
-                    VoteBindingAdapter.recycleViewNewsBinding( mRecyclerViewGames, votingAppViewModel);
+                    VoteBindingAdapter.recycleViewNewsBinding( mRecyclerViewGames, votingAppViewModel );
                 } else {
                     String specificLocation = b.getString( "specificLocation" );
 

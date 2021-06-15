@@ -24,7 +24,7 @@ public final class VoteUseCase {
     }
 
     public LiveData < List < Alegere > > getAlegeri( String idLocatie, String tip ) {
-        return mGameMediator.getAlegeri( idLocatie ,tip);
+        return mGameMediator.getAlegeri( idLocatie, tip );
     }
 
     public LiveData < List < Locatie > > getLocatii() {
@@ -35,8 +35,8 @@ public final class VoteUseCase {
         return mGameMediator.getStireById( idAlegere, idStire );
     }
 
-    public LiveData < List < Stire > > getStiri( ) {
-        return mGameMediator.getStiri(  );
+    public LiveData < List < Stire > > getStiri() {
+        return mGameMediator.getStiri();
     }
 
     public void insertVot( VotAnonim votAnonim ) {

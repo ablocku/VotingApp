@@ -16,7 +16,7 @@ public final class InMemoryDataSource extends VoteInMemoryRepository {
     }
 
     @Override
-    protected void addUserInMemory(Utilizator utilizator) {
+    protected void addUserInMemory( Utilizator utilizator ) {
         inMemoryUserTemporaryStorage.addUserInMemory( utilizator );
     }
 
