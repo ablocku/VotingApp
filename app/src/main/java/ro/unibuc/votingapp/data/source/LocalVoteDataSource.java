@@ -33,8 +33,8 @@ public final class LocalVoteDataSource extends VoteLocalRepository {
     }
 
     @Override
-    protected LiveData < List < Alegere > > getAlegeri( String idLocatie ) {
-        return mVoteDao.getAlegeri( idLocatie );
+    protected LiveData < List < Alegere > > getAlegeri( String idLocatie, String tip ) {
+        return mVoteDao.getAlegeri( idLocatie, tip );
     }
 
     @Override
@@ -43,8 +43,8 @@ public final class LocalVoteDataSource extends VoteLocalRepository {
     }
 
     @Override
-    protected LiveData < List < Stire > > getStiri( String idAlegere ) {
-        return mVoteDao.getStiri( idAlegere );
+    protected LiveData < List < Stire > > getStireById( String idAlegere, String idStire ) {
+        return mVoteDao.getStireById( idAlegere, idStire );
     }
 
     @Override
@@ -123,14 +123,14 @@ public final class LocalVoteDataSource extends VoteLocalRepository {
         @Query ( "SELECT DISTINCT idAlegere, cast (count(*) as text) as idCandidat, numeCandidat, observatii from Candidat group by idAlegere, numeCandidat, observatii having idAlegere=:idAlegere" )
         LiveData < List < Candidat > > getCandidati( String idAlegere );
 
-        @Query ( "SELECT * FROM Alegere Where idLocatie=:idLocatie" )
-        LiveData < List < Alegere > > getAlegeri( String idLocatie );
+        @Query ( "SELECT * FROM Alegere Where idLocatie=:idLocatie and tipVot=:tip" )
+        LiveData < List < Alegere > > getAlegeri( String idLocatie, String tip );
 
         @Query ( "SELECT * FROM Locatie" )
         LiveData < List < Locatie > > getLocatii();
 
-        @Query ( "SELECT * FROM Stire where idAlegere=:idAlegere" )
-        LiveData < List < Stire > > getStiri( String idAlegere );
+        @Query ( "SELECT * FROM Stire where idAlegere=:idAlegere and idStire=:idStire" )
+        LiveData < List < Stire > > getStireById( String idAlegere, String idStire );
 
         @Query ( "SELECT * FROM Utilizator where idUtilizator=:CNP" )
         List < Utilizator > getUtilizator( String CNP );

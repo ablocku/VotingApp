@@ -1,4 +1,4 @@
-package ro.unibuc.votingapp.presentation.view.adapter;
+package ro.unibuc.votingapp.presentation.view.databinding;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,12 +24,10 @@ public final class AlegereAdapter extends RecyclerView.Adapter < AlegereAdapter.
     private final LayoutInflater mInflater;
     private View itemView;
     private final Context context;
-    private final boolean setOnClickListenerOnViewCards;
 
-    public AlegereAdapter( Context context, boolean setOnClickListenerOnViewCards ) {
+    public AlegereAdapter( Context context ) {
         mInflater = LayoutInflater.from( context );
         this.context = context;
-        this.setOnClickListenerOnViewCards = setOnClickListenerOnViewCards;
     }
 
     @NonNull
@@ -55,20 +53,16 @@ public final class AlegereAdapter extends RecyclerView.Adapter < AlegereAdapter.
             alegereViewHolder.mCard.setCardBackgroundColor( itemView.getResources().getColor( R.color.colorPrimary, context.getTheme() ) );
 
 
-            if ( setOnClickListenerOnViewCards ) {
-                alegereViewHolder.mCard.setOnClickListener( new View.OnClickListener() {
-                    @Override
-                    public void onClick( View view ) {
-                        Intent intent = new Intent( context, RecyclerViewActivity.class );
-                        Bundle bundle = new Bundle();
-                        bundle.putString( "specificLocation", alegere.getIdLocatie() );
-                        bundle.putString( "tipVot", alegere.getTipVot() );
-                        bundle.putString( "idAlegere", alegere.getIdAlegere() );
-                        intent.putExtras( bundle ); //Put your id to your next Intent
-                        context.startActivity( intent );//cream o noua activitate pt utilizatorul specific
-                    }
-                } );
-            }
+            alegereViewHolder.mCard.setOnClickListener( view -> {
+                Intent intent = new Intent( context, RecyclerViewActivity.class );
+                Bundle bundle = new Bundle();
+                bundle.putString( "specificLocation", alegere.getIdLocatie() );
+                bundle.putString( "tipVot", alegere.getTipVot() );
+                bundle.putString( "idAlegere", alegere.getIdAlegere() );
+                intent.putExtras( bundle ); //Put your id to your next Intent
+                context.startActivity( intent );//cream o noua activitate pt utilizatorul specific
+            } );
+
         } else {
             alegereViewHolder.mTextViewName.setText( R.string.noText );
             alegereViewHolder.mTextViewResult.setText( R.string.noText );

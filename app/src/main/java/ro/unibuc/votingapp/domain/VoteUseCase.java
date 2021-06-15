@@ -22,16 +22,16 @@ public final class VoteUseCase {
         return mGameMediator.getCandidati( idAlegere );
     }
 
-    public LiveData < List < Alegere > > getAlegeri( String idLocatie ) {
-        return mGameMediator.getAlegeri( idLocatie );
+    public LiveData < List < Alegere > > getAlegeri( String idLocatie, String tip ) {
+        return mGameMediator.getAlegeri( idLocatie ,tip);
     }
 
     public LiveData < List < Locatie > > getLocatii() {
         return mGameMediator.getLocatii();
     }
 
-    public LiveData < List < Stire > > getStiri( String idAlegere ) {
-        return mGameMediator.getStiri( idAlegere );
+    public LiveData < List < Stire > > getStireById( String idAlegere, String idStire ) {
+        return mGameMediator.getStireById( idAlegere, idStire );
     }
 
     public void insertVot( VotAnonim votAnonim ) {

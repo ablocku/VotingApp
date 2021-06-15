@@ -18,11 +18,11 @@ public abstract class VoteLocalRepository {
 
     protected abstract LiveData < List < Candidat > > getCandidati( String idAlegere );
 
-    protected abstract LiveData < List < Alegere > > getAlegeri( String idLocatie );
+    protected abstract LiveData < List < Alegere > > getAlegeri( String idLocatie, String tip );
 
     protected abstract LiveData < List < Locatie > > getLocatii();
 
-    protected abstract LiveData < List < Stire > > getStiri( String idAlegere );
+    protected abstract LiveData < List < Stire > > getStireById( String idAlegere, String idStire );
 
     protected abstract void insertLocatie( Locatie locatie );
 

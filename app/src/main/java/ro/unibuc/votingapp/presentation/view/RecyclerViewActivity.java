@@ -13,8 +13,10 @@ import ro.unibuc.votingapp.R;
 import ro.unibuc.votingapp.VotingApplication;
 import ro.unibuc.votingapp.presentation.VotingAppViewModel;
 import ro.unibuc.votingapp.presentation.VotingAppViewModelFactory;
-import ro.unibuc.votingapp.presentation.view.adapter.LocationAdapter;
-import ro.unibuc.votingapp.presentation.view.adapter.VoteBindingAdapter;
+import ro.unibuc.votingapp.presentation.view.databinding.AlegereAdapter;
+import ro.unibuc.votingapp.presentation.view.databinding.LocationAdapter;
+import ro.unibuc.votingapp.presentation.view.databinding.NewsAdapter;
+import ro.unibuc.votingapp.presentation.view.databinding.VoteBindingAdapter;
 
 
 public final class RecyclerViewActivity extends AppCompatActivity {
@@ -44,24 +46,31 @@ public final class RecyclerViewActivity extends AppCompatActivity {
         if ( b != null ) {
             String tip = b.getString( "tip" );
             if ( tip != null ) {
+                //obtinem ViewModel
+                VotingAppViewModel votingAppViewModel = new ViewModelProvider( this, new VotingAppViewModelFactory( VotingApplication.getApplication() ) ).get( VotingAppViewModel.class );
                 if ( tip.equals( "news" ) ) {
+                    final NewsAdapter newsAdapter = new NewsAdapter( mRecyclerViewGames.getContext() );
 
+                    VoteBindingAdapter.recycleViewSetNewsAdapter( mRecyclerViewGames, newsAdapter );
+                    VoteBindingAdapter.RecycleViewNewsBinding( mRecyclerViewGames, votingAppViewModel, b.getString( "idAlegere" ), b.getString( "idNews" ) );
                 } else {
                     String specificLocation = b.getString( "specificLocation" );
 //            setOnClickListenerOnViewCards = false;
 
                     if ( specificLocation == null ) {
                         // get the adapter instance
-                        final LocationAdapter gamesAdapter = new LocationAdapter( mRecyclerViewGames.getContext(), setOnClickListenerOnViewCards );
+                        final LocationAdapter locationAdapter = new LocationAdapter( mRecyclerViewGames.getContext() );
 
                         //binding pentru a seta gameAdaptorul la RecyclerView-ul nostru
-                        VoteBindingAdapter.recycleViewSetAdapter( mRecyclerViewGames, gamesAdapter );
+                        VoteBindingAdapter.recycleViewSetLocationAdapter( mRecyclerViewGames, locationAdapter );
 
-                        //obtinem ViewModel
-                        VotingAppViewModel votingAppViewModel = new ViewModelProvider( this, new VotingAppViewModelFactory( VotingApplication.getApplication() ) ).get( VotingAppViewModel.class );
 
 //        binding pentru a prelua datele din repository
                         VoteBindingAdapter.RecycleViewLocationBinding( mRecyclerViewGames, votingAppViewModel );
+                    } else {
+                        final AlegereAdapter alegereAdapter = new AlegereAdapter( mRecyclerViewGames.getContext() );
+                        VoteBindingAdapter.recycleViewSetAlegereAdapter( mRecyclerViewGames, alegereAdapter );
+                        VoteBindingAdapter.RecycleViewAlegereBinding( mRecyclerViewGames, votingAppViewModel, specificLocation, tip );
                     }
                 }
             }

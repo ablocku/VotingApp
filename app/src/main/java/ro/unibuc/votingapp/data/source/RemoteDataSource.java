@@ -138,7 +138,7 @@ public final class RemoteDataSource extends VoteRemoteRepository {
         List < Stire > stiri = new ArrayList <>();
         Gson gson = new Gson();
         try {
-            JsonObject response = api.getAlegeri().execute().body();
+            JsonObject response = api.getStiri().execute().body();
             if ( response != null ) {
                 for ( String jsonObjectKeys : response.keySet() ) {
                     JsonObject jsonObject = response.getAsJsonObject( jsonObjectKeys );
@@ -158,7 +158,7 @@ public final class RemoteDataSource extends VoteRemoteRepository {
         List < VotAnonim > voturi = new ArrayList <>();
         Gson gson = new Gson();
         try {
-            JsonObject response = api.getAlegeri().execute().body();
+            JsonObject response = api.getVoturi().execute().body();
             if ( response != null ) {
                 for ( String jsonObjectKeys : response.keySet() ) {
                     JsonObject jsonObject = response.getAsJsonObject( jsonObjectKeys );

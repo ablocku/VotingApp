@@ -46,16 +46,16 @@ final class VoteMediator {
         return localRepository.getCandidati( idAlegere );
     }
 
-    LiveData < List < Alegere > > getAlegeri( String idLocatie ) {
-        return localRepository.getAlegeri( idLocatie );
+    LiveData < List < Alegere > > getAlegeri( String idLocatie, String tip ) {
+        return localRepository.getAlegeri( idLocatie, tip );
     }
 
     LiveData < List < Locatie > > getLocatii() {
         return localRepository.getLocatii();
     }
 
-    LiveData < List < Stire > > getStiri( String idAlegere ) {
-        return localRepository.getStiri( idAlegere );
+    LiveData < List < Stire > > getStireById( String idAlegere, String idStire ) {
+        return localRepository.getStireById( idAlegere, idStire );
     }
 
     protected List <Utilizator> getUtilizator(String CNP ){

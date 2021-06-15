@@ -50,13 +50,13 @@ public final class VotingAppViewModel extends AndroidViewModel {
         return voteUseCase.getCandidati( idAlegere );
     }
 
-    public LiveData < List < Alegere > > getAlegeri( String idLocatie ) {
-        return voteUseCase.getAlegeri( idLocatie );
+    public LiveData < List < Alegere > > getAlegeri( String idLocatie, String tip ) {
+        return voteUseCase.getAlegeri( idLocatie, tip );
     }
 
 
-    public LiveData < List < Stire > > getStiri( String idAlegere ) {
-        return voteUseCase.getStiri( idAlegere );
+    public LiveData < List < Stire > > getStireById( String idAlegere, String idStire ) {
+        return voteUseCase.getStireById( idAlegere,idStire );
     }
 
     public void insertVot( VotAnonim votAnonim ) {

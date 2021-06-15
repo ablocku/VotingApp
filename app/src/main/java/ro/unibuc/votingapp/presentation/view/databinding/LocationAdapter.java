@@ -1,4 +1,4 @@
-package ro.unibuc.votingapp.presentation.view.adapter;
+package ro.unibuc.votingapp.presentation.view.databinding;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,12 +24,10 @@ public final class LocationAdapter extends RecyclerView.Adapter < LocationAdapte
     private final LayoutInflater mInflater;
     private View itemView;
     private final Context context;
-    private final boolean setOnClickListenerOnViewCards;
 
-    public LocationAdapter( Context context, boolean setOnClickListenerOnViewCards ) {
+    public LocationAdapter( Context context ) {
         mInflater = LayoutInflater.from( context );
         this.context = context;
-        this.setOnClickListenerOnViewCards = setOnClickListenerOnViewCards;
     }
 
     @NonNull
@@ -55,18 +53,15 @@ public final class LocationAdapter extends RecyclerView.Adapter < LocationAdapte
             locationViewHolder.mCard.setCardBackgroundColor( itemView.getResources().getColor( R.color.colorPrimary, context.getTheme() ) );
 
 
-            if ( setOnClickListenerOnViewCards ) {
-                locationViewHolder.mCard.setOnClickListener( new View.OnClickListener() {
-                    @Override
-                    public void onClick( View view ) {
-                        Intent intent = new Intent( context, RecyclerViewActivity.class );
-                        Bundle bundle = new Bundle();
-                        bundle.putString( "specificLocation", locatie.getIdLocatie() );
-                        intent.putExtras( bundle ); //Put your id to your next Intent
-                        context.startActivity( intent );//cream o noua activitate pt utilizatorul specific
-                    }
-                } );
-            }
+            locationViewHolder.mCard.setOnClickListener( view -> {
+                Intent intent = new Intent( context, RecyclerViewActivity.class );
+                Bundle bundle = new Bundle();
+                bundle.putString( "tip", "orice" );
+                bundle.putString( "specificLocation", locatie.getIdLocatie() );
+                intent.putExtras( bundle ); //Put your id to your next Intent
+                context.startActivity( intent );//cream o noua activitate pt utilizatorul specific
+            } );
+
         } else {
             locationViewHolder.mTextViewName.setText( R.string.noText );
             locationViewHolder.mTextViewResult.setText( R.string.noText );
