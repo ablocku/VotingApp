@@ -19,6 +19,8 @@ public abstract class VoteRemoteRepository {
 
     protected abstract void insertUtilizator(Utilizator utilizator);
 
+    protected abstract void insertLocatie( Locatie locatie );
+
     protected abstract List < Alegere > getAlegeri();
 
     protected abstract List < Locatie > getLocatii();

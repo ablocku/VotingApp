@@ -36,7 +36,7 @@ public final class RemoteDataSource extends VoteRemoteRepository {
     }
 
     @Override
-    protected List<Utilizator> getUtilizatori() {
+    protected List < Utilizator > getUtilizatori() {
         List < Utilizator > utilizatori = new ArrayList <>();
         Gson gson = new Gson();
         try {
@@ -57,7 +57,7 @@ public final class RemoteDataSource extends VoteRemoteRepository {
 
     @Override
     protected void insertUtilizator( Utilizator utilizator ) {
-        Call <Utilizator> call = api.insertUtilizator( utilizator);
+        Call < Utilizator > call = api.insertUtilizator( utilizator );
         call.enqueue( new Callback < Utilizator >() {
             @Override
             public void onResponse( @NotNull Call < Utilizator > call, @NotNull Response < Utilizator > response ) {
@@ -69,6 +69,22 @@ public final class RemoteDataSource extends VoteRemoteRepository {
                 Timber.d( "fail inserting user in firebase db" );
                 InMemoryDataSource inMemoryDataSource = new InMemoryDataSource();
                 inMemoryDataSource.addUserInMemory( utilizator );
+            }
+        } );
+    }
+
+    @Override
+    protected void insertLocatie( Locatie locatie ) {
+        Call < Locatie > call = api.insertLocatie( locatie );
+        call.enqueue( new Callback < Locatie >() {
+            @Override
+            public void onResponse( @NotNull Call < Locatie > call, @NotNull Response < Locatie > response ) {
+                Timber.d( "Success inserting user in firebase db" );
+            }
+
+            @Override
+            public void onFailure( @NotNull Call < Locatie > call, @NotNull Throwable t ) {
+                Timber.d( "fail inserting user in firebase db" );
             }
         } );
     }
@@ -209,16 +225,17 @@ public final class RemoteDataSource extends VoteRemoteRepository {
         @GET ( "Stire.json" )
         Call < JsonObject > getStiri();
 
+        @GET ( "Utilizator.json" )
+        Call < JsonObject > getUtilizator();
 
         @POST ( "VotAnonim.json" )
         Call < VotAnonim > insertVot( @Body VotAnonim votAnonim );
 
-        @GET ( "Utilizator.json" )
-        Call < JsonObject > getUtilizator();
-
-
         @POST ( "Utilizator.json" )
         Call < Utilizator > insertUtilizator( @Body Utilizator utilizator );
+
+        @POST ( "Locatie.json" )
+        Call < Locatie > insertLocatie( @Body Locatie locatie );
 
         static RetrofitApi createApi() {
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
