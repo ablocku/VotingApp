@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="@color/albastruMarin"
     tools:context="ro.unibuc.votingapp.presentation.view.LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <ImageView
             android:id="@+id/loginText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login"
-            android:textSize="30sp"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:src="@drawable/icon_circular"
             app:layout_constraintBottom_toTopOf="@+id/email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,11 +56,11 @@
 
         <Button
             android:id="@+id/logInButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="251dp"
+            android:layout_height="151dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:text="@string/confirm_login"
+            android:background="@drawable/login_button"
             app:layout_constraintBottom_toTopOf="@+id/registerFromLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
