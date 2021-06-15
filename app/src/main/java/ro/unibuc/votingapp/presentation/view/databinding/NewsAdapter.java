@@ -58,9 +58,8 @@ public final class NewsAdapter extends RecyclerView.Adapter < NewsAdapter.NewsVi
                 public void onClick( View view ) {
                     Intent intent = new Intent( context, NewsActivity.class );
                     Bundle bundle = new Bundle();
-                    bundle.putString( "tip", "news" );
-                    bundle.putString( "idAlegere", stire.getIdAlegere() );
-                    bundle.putString( "idNews", stire.getIdStire() );
+                    bundle.putString( "titlu", stire.getTitluStire() );
+                    bundle.putString( "content", stire.getContinut() );
 
                     intent.putExtras( bundle ); //Put your id to your next Intent
                     context.startActivity( intent );//cream o noua activitate pt utilizatorul specific
