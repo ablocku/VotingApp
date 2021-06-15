@@ -24,10 +24,12 @@ public final class LocationAdapter extends RecyclerView.Adapter < LocationAdapte
     private final LayoutInflater mInflater;
     private View itemView;
     private final Context context;
+    private final String tip;
 
-    public LocationAdapter( Context context ) {
+    public LocationAdapter( Context context, @NonNull String tip ) {
         mInflater = LayoutInflater.from( context );
         this.context = context;
+        this.tip = tip;
     }
 
     @NonNull
@@ -56,7 +58,7 @@ public final class LocationAdapter extends RecyclerView.Adapter < LocationAdapte
             locationViewHolder.mCard.setOnClickListener( view -> {
                 Intent intent = new Intent( context, RecyclerViewActivity.class );
                 Bundle bundle = new Bundle();
-                bundle.putString( "tip", "orice" );
+                bundle.putString( "tip", tip );
                 bundle.putString( "specificLocation", locatie.getIdLocatie() );
                 intent.putExtras( bundle ); //Put your id to your next Intent
                 context.startActivity( intent );//cream o noua activitate pt utilizatorul specific

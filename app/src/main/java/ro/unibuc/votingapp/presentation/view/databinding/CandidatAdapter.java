@@ -13,11 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ro.unibuc.votingapp.R;
-import ro.unibuc.votingapp.data.Alegere;
+import ro.unibuc.votingapp.data.Candidat;
 
 public final class CandidatAdapter extends RecyclerView.Adapter < CandidatAdapter.CandidatViewHolder > {
 
-    private List < Alegere > mAlegere;
+    private List < Candidat > mCandidat;
     private final LayoutInflater mInflater;
     private View itemView;
     private final Context context;
@@ -36,12 +36,12 @@ public final class CandidatAdapter extends RecyclerView.Adapter < CandidatAdapte
 
     @Override
     public void onBindViewHolder( @NonNull CandidatViewHolder candidatViewHolder, int i ) {
-        if ( mAlegere != null ) {
-            Alegere alegere = mAlegere.get( i );
-            candidatViewHolder.mTextViewName.setText( alegere.getData() );
-            candidatViewHolder.mTextViewResult.setText( alegere.getIdAlegere() );
-            candidatViewHolder.mTextViewType.setText( alegere.getTipVot() );
-            candidatViewHolder.mTextViewTotalPoints.setText( alegere.getTitlu() );
+        if ( mCandidat != null ) {
+            Candidat candidat = mCandidat.get( i );
+            candidatViewHolder.mTextViewName.setText( candidat.getIdAlegere() );
+            candidatViewHolder.mTextViewResult.setText( candidat.getIdCandidat() );
+            candidatViewHolder.mTextViewType.setText( candidat.getNumeCandidat() );
+            candidatViewHolder.mTextViewTotalPoints.setText( candidat.getObservatii() );
 
             candidatViewHolder.mTextViewName.setTextColor( itemView.getResources().getColor( R.color.colorAccent, context.getTheme() ) );
             candidatViewHolder.mTextViewType.setTextColor( itemView.getResources().getColor( R.color.colorAccent, context.getTheme() ) );
@@ -70,14 +70,14 @@ public final class CandidatAdapter extends RecyclerView.Adapter < CandidatAdapte
 
     @Override
     public int getItemCount() {
-        if ( mAlegere != null )
-            return mAlegere.size();
+        if ( mCandidat != null )
+            return mCandidat.size();
         else
             return 0;
     }
 
-    public void setGames( List < Alegere > locatii ) {
-        mAlegere = locatii;
+    public void setGames( List < Candidat > candidati ) {
+        mCandidat = candidati;
         notifyDataSetChanged();
     }
 

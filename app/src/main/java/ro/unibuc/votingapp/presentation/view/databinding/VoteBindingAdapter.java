@@ -42,8 +42,19 @@ public final class VoteBindingAdapter {
         }
     }
 
+    @BindingAdapter ( "pollsAdapter" )
+    public static void recycleViewSetCandidatAdapter( RecyclerView mRecyclerViewGames, CandidatAdapter candidatAdapter ) {
+        if ( mRecyclerViewGames.getAdapter() == null ) {
+            // set the adapter to the recycler view
+            mRecyclerViewGames.setAdapter( candidatAdapter );
+            // define and set layout manager
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager( mRecyclerViewGames.getContext() );
+            mRecyclerViewGames.setLayoutManager( layoutManager );
+        }
+    }
+
     @BindingAdapter ( { "VoteViewModel" } )
-    public static void RecycleViewLocationBinding( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel ) {
+    public static void recycleViewLocationBinding( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel ) {
         votingAppViewModel.getLocatii().observeForever( locatii -> {
             LocationAdapter locationAdapter = ( LocationAdapter ) mRecyclerViewGames.getAdapter();
             if ( locationAdapter != null )
@@ -51,9 +62,9 @@ public final class VoteBindingAdapter {
         } );
     }
 
-    @BindingAdapter ( { "VoteViewModel", "idAlegere", "idNews" } )
-    public static void RecycleViewNewsBinding( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel, @NonNull String idAlegere, @NonNull String idNews ) {
-        votingAppViewModel.getStireById( idAlegere, idNews ).observeForever( stiri -> {
+    @BindingAdapter ( { "VoteViewModel"} )
+    public static void recycleViewNewsBinding( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel) {
+        votingAppViewModel.getStiri().observeForever( stiri -> {
             NewsAdapter newsAdapter = ( NewsAdapter ) mRecyclerViewGames.getAdapter();
             if ( newsAdapter != null )
                 newsAdapter.setGames( stiri );
@@ -61,12 +72,22 @@ public final class VoteBindingAdapter {
     }
 
     @BindingAdapter ( { "VoteViewModel", "location", "tip" } )
-    public static void RecycleViewAlegereBinding( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel, @NonNull String locationId, @NonNull String tip ) {
+    public static void recycleViewAlegereBinding( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel, @NonNull String locationId, @NonNull String tip ) {
         votingAppViewModel.getAlegeri( locationId, tip ).observeForever( alegeri -> {
             //suntem siguri ca adaptorul nostru este de tipul GameAdapter
             AlegereAdapter alegereAdapter = ( AlegereAdapter ) mRecyclerViewGames.getAdapter();
             if ( alegereAdapter != null )
                 alegereAdapter.setGames( alegeri );
+        } );
+    }
+
+    @BindingAdapter ( { "VoteViewModel", "tip", "idAlegere" } )
+    public static void recycleViewCandidatBinding( RecyclerView mRecyclerViewGames, VotingAppViewModel votingAppViewModel, @NonNull String tip, @NonNull String idAlegere ) {
+        votingAppViewModel.getCandidati( idAlegere ).observeForever( candidati -> {
+            //suntem siguri ca adaptorul nostru este de tipul GameAdapter
+            CandidatAdapter candidatAdapter = ( CandidatAdapter ) mRecyclerViewGames.getAdapter();
+            if ( candidatAdapter != null )
+                candidatAdapter.setGames( candidati );
         } );
     }
 }

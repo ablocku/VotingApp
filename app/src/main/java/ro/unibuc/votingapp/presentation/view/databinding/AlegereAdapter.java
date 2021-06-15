@@ -57,7 +57,7 @@ public final class AlegereAdapter extends RecyclerView.Adapter < AlegereAdapter.
                 Intent intent = new Intent( context, RecyclerViewActivity.class );
                 Bundle bundle = new Bundle();
                 bundle.putString( "specificLocation", alegere.getIdLocatie() );
-                bundle.putString( "tipVot", alegere.getTipVot() );
+                bundle.putString( "tip", alegere.getTipVot() );
                 bundle.putString( "idAlegere", alegere.getIdAlegere() );
                 intent.putExtras( bundle ); //Put your id to your next Intent
                 context.startActivity( intent );//cream o noua activitate pt utilizatorul specific
@@ -79,8 +79,8 @@ public final class AlegereAdapter extends RecyclerView.Adapter < AlegereAdapter.
             return 0;
     }
 
-    public void setGames( List < Alegere > locatii ) {
-        mAlegere = locatii;
+    public void setGames( List < Alegere > alegeri ) {
+        mAlegere = alegeri;
         notifyDataSetChanged();
     }
 

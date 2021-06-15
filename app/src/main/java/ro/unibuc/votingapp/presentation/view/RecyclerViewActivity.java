@@ -14,6 +14,7 @@ import ro.unibuc.votingapp.VotingApplication;
 import ro.unibuc.votingapp.presentation.VotingAppViewModel;
 import ro.unibuc.votingapp.presentation.VotingAppViewModelFactory;
 import ro.unibuc.votingapp.presentation.view.databinding.AlegereAdapter;
+import ro.unibuc.votingapp.presentation.view.databinding.CandidatAdapter;
 import ro.unibuc.votingapp.presentation.view.databinding.LocationAdapter;
 import ro.unibuc.votingapp.presentation.view.databinding.NewsAdapter;
 import ro.unibuc.votingapp.presentation.view.databinding.VoteBindingAdapter;
@@ -37,10 +38,6 @@ public final class RecyclerViewActivity extends AppCompatActivity {
         // get recycler view from xml layout
         RecyclerView mRecyclerViewGames = findViewById( R.id.recycler_view_contacts_1 );
 
-        //daca suntem pe jocurile unui singur utilizator, va fi setat fals la verificare
-        //pentru a nu permite sa se creeze activitati la infinit pt a afisa jocurile unui utilizator
-        boolean setOnClickListenerOnViewCards = true;
-
         //verificam sa vedem daca vrem sa afisam doar pt un anumit utilizator
         Bundle b = getIntent().getExtras();
         if ( b != null ) {
@@ -50,27 +47,27 @@ public final class RecyclerViewActivity extends AppCompatActivity {
                 VotingAppViewModel votingAppViewModel = new ViewModelProvider( this, new VotingAppViewModelFactory( VotingApplication.getApplication() ) ).get( VotingAppViewModel.class );
                 if ( tip.equals( "news" ) ) {
                     final NewsAdapter newsAdapter = new NewsAdapter( mRecyclerViewGames.getContext() );
-
                     VoteBindingAdapter.recycleViewSetNewsAdapter( mRecyclerViewGames, newsAdapter );
-                    VoteBindingAdapter.RecycleViewNewsBinding( mRecyclerViewGames, votingAppViewModel, b.getString( "idAlegere" ), b.getString( "idNews" ) );
+                    VoteBindingAdapter.recycleViewNewsBinding( mRecyclerViewGames, votingAppViewModel);
                 } else {
                     String specificLocation = b.getString( "specificLocation" );
-//            setOnClickListenerOnViewCards = false;
 
                     if ( specificLocation == null ) {
-                        // get the adapter instance
-                        final LocationAdapter locationAdapter = new LocationAdapter( mRecyclerViewGames.getContext() );
-
-                        //binding pentru a seta gameAdaptorul la RecyclerView-ul nostru
+                        final LocationAdapter locationAdapter = new LocationAdapter( mRecyclerViewGames.getContext(), tip );
                         VoteBindingAdapter.recycleViewSetLocationAdapter( mRecyclerViewGames, locationAdapter );
-
-
-//        binding pentru a prelua datele din repository
-                        VoteBindingAdapter.RecycleViewLocationBinding( mRecyclerViewGames, votingAppViewModel );
+                        VoteBindingAdapter.recycleViewLocationBinding( mRecyclerViewGames, votingAppViewModel );
                     } else {
-                        final AlegereAdapter alegereAdapter = new AlegereAdapter( mRecyclerViewGames.getContext() );
-                        VoteBindingAdapter.recycleViewSetAlegereAdapter( mRecyclerViewGames, alegereAdapter );
-                        VoteBindingAdapter.RecycleViewAlegereBinding( mRecyclerViewGames, votingAppViewModel, specificLocation, tip );
+                        final String idAlegere = b.getString( "idAlegere" );
+
+                        if ( idAlegere == null ) {
+                            final AlegereAdapter alegereAdapter = new AlegereAdapter( mRecyclerViewGames.getContext() );
+                            VoteBindingAdapter.recycleViewSetAlegereAdapter( mRecyclerViewGames, alegereAdapter );
+                            VoteBindingAdapter.recycleViewAlegereBinding( mRecyclerViewGames, votingAppViewModel, specificLocation, tip );
+                        } else {
+                            final CandidatAdapter candidatAdapter = new CandidatAdapter( mRecyclerViewGames.getContext() );
+                            VoteBindingAdapter.recycleViewSetCandidatAdapter( mRecyclerViewGames, candidatAdapter );
+                            VoteBindingAdapter.recycleViewCandidatBinding( mRecyclerViewGames, votingAppViewModel, tip, idAlegere );
+                        }
                     }
                 }
             }
