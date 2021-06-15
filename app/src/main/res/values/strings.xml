@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Voting App</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Voting App Beta</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_polls_oficial">Official Polls</string>
+    <string name="menu_polls_informal">Informal Polls</string>
+    <string name="creditsString">Credits</string>
+    <string name="credits">
+        ToDo
+    </string>
+    <string name="credits2">
+        All rights reserved
+    </string>
+    <string name="confirmRegistration">Confirm registration</string>
+    <string name="loginFromRegister">Already registered? Log in</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="register">Register</string>
+    <string name="logout">LOGOUT</string>
+    <string name="login">Login</string>
+    <string name="confirm_login">Confirm Login</string>
+    <string name="not_registered_create_new_account">Not registered? Create new account</string>
+    <string name="welcome">Welcome Home,\n%s!</string>
+    <string name="hello">Hello</string>
+    <string name="saidHello">Someone said hello</string>
+    <string name="work">Heavy work</string>
+    <string name="processing">Something heavy is being processed&#8230;</string>
+    <string name="floatingButton">Floating Button for Score Board</string>
+    <string name="longPressFinishGame">Long press to finish game</string>
+    <string name="broadcast_s1">Replace Successful</string>
+    <string name="broadcast_s2">Broadcast received my_package_replace intent</string>
+    <string name="loggedIn">You are logged in</string>
+    <string name="loginRequired">Please Login</string>
+    <string name="noText" translatable="false" />
+</resources>

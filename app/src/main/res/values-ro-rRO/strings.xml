@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Voting App</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Deschide navigation drawer</string>
+    <string name="navigation_drawer_close">Inchide navigation drawer</string>
+    <string name="nav_header_title">Voting App Beta</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Acasa</string>
+    <string name="menu_polls_oficial">Polluri Oficiale</string>
+    <string name="menu_polls_informal">Polluri Informale</string>
+    <string name="creditsString">Credite</string>
+    <string name="credits">
+        Todo
+    </string>
+    <string name="credits2">
+        All rights reserved
+    </string>
+    <string name="confirmRegistration">Confirmati inregistrarea</string>
+    <string name="loginFromRegister">Aveti deja cont? Log in</string>
+    <string name="password">Parola</string>
+    <string name="email">Email</string>
+    <string name="register">Creere cont</string>
+    <string name="logout">LOGOUT</string>
+    <string name="login">Login</string>
+    <string name="confirm_login">Intrati</string>
+    <string name="not_registered_create_new_account">Nu aveti cont? Creati unul acum&#8230;</string>
+    <string name="welcome">Bun venit,\n%s!</string>
+    <string name="hello">Buna</string>
+    <string name="saidHello">Cineva a spus buna:)</string>
+    <string name="work">Munca grea</string>
+    <string name="processing">Ceva greu se proceseaza&#8230;</string>
+    <string name="floatingButton">Buton pentru tabela cu scoruri</string>
+    <string name="longPressFinishGame">Tineti apasat pt. a opri jocul</string>
+    <string name="broadcast_s1">Reinstalare cu succes!</string>
+    <string name="broadcast_s2">Broadcast Receiverul a fost activat prin intent-ul my_package_replace</string>
+    <string name="loggedIn">Autentificat</string>
+    <string name="loginRequired">Autentificati-va&#8230;</string>
+</resources>
