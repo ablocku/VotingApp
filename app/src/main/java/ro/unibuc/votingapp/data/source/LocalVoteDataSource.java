@@ -16,6 +16,7 @@ import ro.unibuc.votingapp.data.Locatie;
 import ro.unibuc.votingapp.data.Stire;
 import ro.unibuc.votingapp.data.VotAnonim;
 import ro.unibuc.votingapp.domain.VoteLocalRepository;
+import ro.unibuc.votingapp.data.Utilizator;
 import timber.log.Timber;
 
 public final class LocalVoteDataSource extends VoteLocalRepository {
@@ -44,6 +45,22 @@ public final class LocalVoteDataSource extends VoteLocalRepository {
     @Override
     protected LiveData < List < Stire > > getStiri( String idAlegere ) {
         return mVoteDao.getStiri( idAlegere );
+    }
+
+    @Override
+    protected List < Utilizator > getUtilizator( String CNP ){
+        return mVoteDao.getUtilizator(CNP);
+    }
+
+    @Override
+    protected void insertUtilizator( Utilizator utilizator ){
+        AppDatabase.databaseWriteExecutor.execute( () -> {
+            try {
+                mVoteDao.insertUtilizator( utilizator );
+            } catch ( Exception e ) {
+                Timber.e( e );
+            }
+        } );
     }
 
     @Override
@@ -114,6 +131,12 @@ public final class LocalVoteDataSource extends VoteLocalRepository {
 
         @Query ( "SELECT * FROM Stire where idAlegere=:idAlegere" )
         LiveData < List < Stire > > getStiri( String idAlegere );
+
+        @Query ( "SELECT * FROM Utilizator where idUtilizator=:CNP" )
+        List < Utilizator > getUtilizator( String CNP );
+
+        @Insert ( onConflict = OnConflictStrategy.REPLACE )
+        void insertUtilizator( Utilizator utilizator );
 
         @Insert ( onConflict = OnConflictStrategy.IGNORE )
         void insertLocatie( Locatie locatie );

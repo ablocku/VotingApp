@@ -14,6 +14,7 @@ import ro.unibuc.votingapp.data.Alegere;
 import ro.unibuc.votingapp.data.Candidat;
 import ro.unibuc.votingapp.data.Locatie;
 import ro.unibuc.votingapp.data.Stire;
+import ro.unibuc.votingapp.data.Utilizator;
 import ro.unibuc.votingapp.data.VotAnonim;
 import ro.unibuc.votingapp.data.source.InMemoryDataSource;
 import timber.log.Timber;
@@ -55,6 +56,35 @@ final class VoteMediator {
 
     LiveData < List < Stire > > getStiri( String idAlegere ) {
         return localRepository.getStiri( idAlegere );
+    }
+
+    protected List <Utilizator> getUtilizator(String CNP ){
+        return localRepository.getUtilizator(CNP);
+    }
+
+    protected void insertUtilizator( Utilizator utilizator ){
+        //adaugam votul in firebase db
+        postUtilizatorToRemoteRepository( utilizator );
+
+        //Inseram votul in roomDatabase
+        localRepository.insertUtilizator( utilizator );
+    }
+
+    private void postUtilizatorToRemoteRepository(Utilizator utilizator) {
+        //inseram votul in coada repo-ului local
+        VoteInMemoryRepository voteInMemoryRepository = new InMemoryDataSource();
+        voteInMemoryRepository.addUserInMemory( utilizator );
+
+        //dupa ce am inserat acest vot, il vom trimite (pe el si ce mai e in coada) in repo-ul firebase, prin worker
+        try {
+            OneTimeWorkRequest postWorkRequest =
+                    new OneTimeWorkRequest.Builder( VoteWorker.class )
+                            .setInputData( postDataforBuilder )
+                            .build();
+            workManager.enqueue( postWorkRequest );
+        } catch ( Exception e ) {
+            Timber.d( e );
+        }
     }
 
     void insertVot( VotAnonim votAnonim ) {
