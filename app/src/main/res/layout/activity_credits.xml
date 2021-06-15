@@ -7,58 +7,72 @@
     android:background="@color/colorPrimaryDark"
     tools:context="ro.unibuc.votingapp.presentation.view.CreditsActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewProgrammer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space_4"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/colorPrimary"
-        app:cardCornerRadius="@dimen/space_16"
-        app:layout_constraintBottom_toTopOf="@id/cardViewCredits"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context="com.tav.pavgame.Presentation.CreditsActivity">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="@dimen/space_8"
-            android:text="@string/credits"
-            android:textAlignment="center"
-            android:textColor="@color/colorAccent" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewCredits"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space_4"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/colorPrimary"
-        app:cardCornerRadius="@dimen/space_16"
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewProgrammer"
-        tools:context="com.tav.pavgame.Presentation.CreditsActivity">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="@dimen/space_8"
-            android:text="@string/credits2"
-            android:textAlignment="center"
-            android:textColor="@color/colorAccent" />
+    <TextView
+        android:id="@+id/text_display"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/image_view"
+        android:layout_margin="10dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="244dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="209dp"
+        android:maxLines="5"
+        android:text="Display Detected Text from image"
+        android:textSize="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/capture_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:ignore="MissingConstraints" />
 
-    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/capture_image"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/detect_text_image"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="21dp"
+        android:background="@android:color/holo_orange_light"
+        android:text="Capture Image"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/detect_text_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_display"
+        tools:ignore="MissingConstraints" />
+
+
+    <Button
+        android:id="@+id/detect_text_image"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="65dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="Detect Text"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/capture_image"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

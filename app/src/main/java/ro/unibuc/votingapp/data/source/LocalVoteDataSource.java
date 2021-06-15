@@ -16,6 +16,7 @@ import ro.unibuc.votingapp.data.Locatie;
 import ro.unibuc.votingapp.data.Stire;
 import ro.unibuc.votingapp.data.VotAnonim;
 import ro.unibuc.votingapp.domain.VoteLocalRepository;
+import ro.unibuc.votingapp.data.Utilizator;
 import timber.log.Timber;
 
 public final class LocalVoteDataSource extends VoteLocalRepository {
@@ -32,8 +33,8 @@ public final class LocalVoteDataSource extends VoteLocalRepository {
     }
 
     @Override
-    protected LiveData < List < Alegere > > getAlegeri( String idLocatie ) {
-        return mVoteDao.getAlegeri( idLocatie );
+    protected LiveData < List < Alegere > > getAlegeri( String idLocatie, String tip ) {
+        return mVoteDao.getAlegeri( idLocatie, tip );
     }
 
     @Override
@@ -42,8 +43,30 @@ public final class LocalVoteDataSource extends VoteLocalRepository {
     }
 
     @Override
-    protected LiveData < List < Stire > > getStiri( String idAlegere ) {
-        return mVoteDao.getStiri( idAlegere );
+    protected Stire getStireById( String idAlegere, String idStire ) {
+        return mVoteDao.getStireById( idAlegere, idStire );
+    }
+
+    @Override
+    protected LiveData < List < Stire > > getStiri() {
+        return mVoteDao.getStiri();
+    }
+
+
+    @Override
+    protected List < Utilizator > getUtilizator( String CNP ) {
+        return mVoteDao.getUtilizator( CNP );
+    }
+
+    @Override
+    protected void insertUtilizator( Utilizator utilizator ) {
+        AppDatabase.databaseWriteExecutor.execute( () -> {
+            try {
+                mVoteDao.insertUtilizator( utilizator );
+            } catch ( Exception e ) {
+                Timber.e( e );
+            }
+        } );
     }
 
     @Override
@@ -103,17 +126,26 @@ public final class LocalVoteDataSource extends VoteLocalRepository {
 
     @Dao
     interface VoteDao {
-        @Query ( "SELECT DISTINCT idAlegere, cast (count(*) as text) as idCandidat, numeCandidat, observatii from Candidat group by idAlegere, numeCandidat, observatii having idAlegere=:idAlegere" )
+        @Query ( "SELECT DISTINCT Candidat.idCandidat,Candidat.idAlegere, numeCandidat, cast (count(*) as text) as observatii from Candidat, VotAnonim where Candidat.idCandidat=VotAnonim.idCandidat and Candidat.idAlegere=VotAnonim.idAlegere group by Candidat.idAlegere, numeCandidat, observatii having Candidat.idAlegere=:idAlegere " )
         LiveData < List < Candidat > > getCandidati( String idAlegere );
 
-        @Query ( "SELECT * FROM Alegere Where idLocatie=:idLocatie" )
-        LiveData < List < Alegere > > getAlegeri( String idLocatie );
+        @Query ( "SELECT * FROM Alegere Where idLocatie=:idLocatie and tipVot=:tip" )
+        LiveData < List < Alegere > > getAlegeri( String idLocatie, String tip );
 
         @Query ( "SELECT * FROM Locatie" )
         LiveData < List < Locatie > > getLocatii();
 
-        @Query ( "SELECT * FROM Stire where idAlegere=:idAlegere" )
-        LiveData < List < Stire > > getStiri( String idAlegere );
+        @Query ( "SELECT * FROM Stire where idAlegere=:idAlegere and idStire=:idStire" )
+        Stire getStireById( String idAlegere, String idStire );
+
+        @Query ( "SELECT * FROM Stire" )
+        LiveData < List < Stire > > getStiri();
+
+        @Query ( "SELECT * FROM Utilizator where idUtilizator=:CNP" )
+        List < Utilizator > getUtilizator( String CNP );
+
+        @Insert ( onConflict = OnConflictStrategy.REPLACE )
+        void insertUtilizator( Utilizator utilizator );
 
         @Insert ( onConflict = OnConflictStrategy.IGNORE )
         void insertLocatie( Locatie locatie );

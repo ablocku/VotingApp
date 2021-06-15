@@ -78,6 +78,12 @@ public final class VoteWorker extends Worker {
             for ( int i = 0; i < nrOfSyncs; i++ ) {         ///pt a nu face ciclu infinit; ex:nu merge netul=> worst case n insert failed
                 voteRemoteRepository.insertVot( voteInMemoryRepository.removeInMemory() );
             }
+
+            final int nrOfUsers = voteInMemoryRepository.getNrOfUsers();
+            for ( int i = 0; i < nrOfUsers; i++ ) {         ///pt a nu face ciclu infinit; ex:nu merge netul=> worst case n insert failed
+                voteRemoteRepository.insertUtilizator( voteInMemoryRepository.removeUserInMemory() );
+            }
+
             Timber.d( "worker finished posting votes" );
         }
 

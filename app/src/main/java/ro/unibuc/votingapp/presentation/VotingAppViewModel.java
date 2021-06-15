@@ -14,6 +14,7 @@ import ro.unibuc.votingapp.data.Alegere;
 import ro.unibuc.votingapp.data.Candidat;
 import ro.unibuc.votingapp.data.Locatie;
 import ro.unibuc.votingapp.data.Stire;
+import ro.unibuc.votingapp.data.Utilizator;
 import ro.unibuc.votingapp.data.VotAnonim;
 import ro.unibuc.votingapp.domain.VoteDependencyProvider;
 import ro.unibuc.votingapp.domain.VoteUseCase;
@@ -50,16 +51,24 @@ public final class VotingAppViewModel extends AndroidViewModel {
         return voteUseCase.getCandidati( idAlegere );
     }
 
-    public LiveData < List < Alegere > > getAlegeri( String idLocatie ) {
-        return voteUseCase.getAlegeri( idLocatie );
+    public LiveData < List < Alegere > > getAlegeri( String idLocatie, String tip ) {
+        return voteUseCase.getAlegeri( idLocatie, tip );
     }
 
 
-    public LiveData < List < Stire > > getStiri( String idAlegere ) {
-        return voteUseCase.getStiri( idAlegere );
+    public Stire getStireById( String idAlegere, String idStire ) {
+        return voteUseCase.getStireById( idAlegere, idStire );
+    }
+
+    public LiveData < List < Stire > > getStiri() {
+        return voteUseCase.getStiri();
     }
 
     public void insertVot( VotAnonim votAnonim ) {
         voteUseCase.insertVot( votAnonim );
+    }
+
+    public void insertUtilizator( Utilizator utilizator ) {
+        voteUseCase.insertUtilizator( utilizator );
     }
 }

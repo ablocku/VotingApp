@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 
 import ro.unibuc.votingapp.data.*;
 
-@Database ( entities = { Alegere.class, Candidat.class, Locatie.class, Stire.class, VotAnonim.class }, version = 1 )
+@Database ( entities = { Alegere.class, Candidat.class, Locatie.class, Stire.class, VotAnonim.class, Utilizator.class }, version = 1 )
 abstract class AppDatabase extends RoomDatabase {
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
