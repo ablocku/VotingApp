@@ -17,16 +17,24 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-//import com.google.firebase.ml.vision.FirebaseVision;
-//import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-//import com.google.firebase.ml.vision.text.FirebaseVisionText;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.text.FirebaseVisionText;
+import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.Text;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.TextRecognizerOptions;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import androidx.core.content.FileProvider;
@@ -35,7 +43,7 @@ import ro.unibuc.votingapp.R;
 
 import static android.os.Environment.getExternalStoragePublicDirectory;
 
-public final class CreditsActivity extends Activity {
+public final class CreditsActivity extends AppCompatActivity {
     private final static String github = "https://github.com/ReksioCroft/";
     private final static String google = "https://events.withgoogle.com/atelierul-digital-pentru-programatori/";
 
@@ -89,55 +97,56 @@ public final class CreditsActivity extends Activity {
         }
 
     }
+//
+    private void displayTextFromImage(Text firebaseVisionText) {
+        List<Text.TextBlock> blockList = firebaseVisionText.getTextBlocks();
+        if (blockList.size() == 0){
+            Toast.makeText(this, "The text isn't clear. Try again.", Toast.LENGTH_LONG).show();
+        }
+        else {
+            text = "";
+            for (Text.TextBlock block : firebaseVisionText.getTextBlocks()){
+                text = text.concat(block.getText());
+            }
+            textView.setText(text);
+            Log.d("De debug", text);
+        }
+    }
 
-//    private void displayTextFromImage(FirebaseVisionText firebaseVisionText) {
-//        List<FirebaseVisionText.Block> blockList = firebaseVisionText.getBlocks();
-//        if (blockList.size() == 0){
-//            Toast.makeText(this, "The text isn't clear. Try again.", Toast.LENGTH_LONG).show();
-//        }
-//        else {
-//            text = "";
-//            for (FirebaseVisionText.Block block : firebaseVisionText.getBlocks()){
-//                text = text.concat(block.getText());
-//            }
-//            textView.setText(text);
-//            Log.d("De debug", text);
-//        }
-//    }
-//
-//    private void detectTextFromImage(){
-//        if(imageBitmap == null)
-//        {
-//            Toast.makeText(this, "You need to take a photo first.", Toast.LENGTH_LONG).show();
-//        }
-//        else {
+    private void detectTextFromImage(){
+        if(imageBitmap == null)
+        {
+            Toast.makeText(this, "You need to take a photo first.", Toast.LENGTH_LONG).show();
+        }
+        else {
+            TextRecognizer textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+            InputImage image = InputImage.fromBitmap(imageBitmap, 0);
 //            FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromBitmap(imageBitmap);
-//            //        treb sa inlocuiesc cu asta:
-//            //        public static FirebaseVisionImage fromFilePath (Context context, Uri imageUri)
-//
-//            FirebaseVisionTextDetector firebaseVisionTextDetector = FirebaseVision.getInstance().getVisionTextDetector();
-//
-//            firebaseVisionTextDetector.detectInImage(firebaseVisionImage).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-//                @Override
-//                public void onSuccess(FirebaseVisionText firebaseVisionText) {
-//                    displayTextFromImage(firebaseVisionText);
-//                }
-//            }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//                    Toast.makeText(MainActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                    Log.d("Error: ", e.getMessage());
-//                }
-//            });
-//        }
-//
-//    }
+//            FirebaseVisionTextRecognizer firebaseVisionTextDetector = FirebaseVision.getInstance().getCloudTextRecognizer();
+
+            textRecognizer.process(image).addOnSuccessListener(new OnSuccessListener<Text>() {
+                @Override
+                public void onSuccess(Text visionText) {
+                    displayTextFromImage(visionText);
+                }
+            })
+                    .addOnFailureListener(
+                            new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(CreditsActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Log.d("Error: ", e.getMessage());
+                                }
+                            });
+
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_credits);
 
         captureImageBtn = findViewById(R.id.capture_image);
         detectTextBtn = findViewById(R.id.detect_text_image);
@@ -147,7 +156,7 @@ public final class CreditsActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-//                dispatchTakePictureIntent();
+                dispatchTakePictureIntent();
                 textView.setText("");
             }
         });
@@ -155,7 +164,7 @@ public final class CreditsActivity extends Activity {
         detectTextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                detectTextFromImage();
+                detectTextFromImage();
             }
         });
     }
