@@ -54,9 +54,13 @@ final class VoteMediator {
         return localRepository.getLocatii();
     }
 
-    LiveData < List < Stire > > getStireById( String idAlegere, String idStire ) {
+    Stire getStireById( String idAlegere, String idStire ) {
         return localRepository.getStireById( idAlegere, idStire );
     }
+    public LiveData < List < Stire > > getStiri(  ) {
+        return localRepository.getStiri(  );
+    }
+
 
     protected List <Utilizator> getUtilizator(String CNP ){
         return localRepository.getUtilizator(CNP);

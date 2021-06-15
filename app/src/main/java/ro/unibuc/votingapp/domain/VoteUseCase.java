@@ -8,6 +8,7 @@ import ro.unibuc.votingapp.data.Alegere;
 import ro.unibuc.votingapp.data.Candidat;
 import ro.unibuc.votingapp.data.Locatie;
 import ro.unibuc.votingapp.data.Stire;
+import ro.unibuc.votingapp.data.Utilizator;
 import ro.unibuc.votingapp.data.VotAnonim;
 
 
@@ -30,11 +31,20 @@ public final class VoteUseCase {
         return mGameMediator.getLocatii();
     }
 
-    public LiveData < List < Stire > > getStireById( String idAlegere, String idStire ) {
+    public Stire getStireById( String idAlegere, String idStire ) {
         return mGameMediator.getStireById( idAlegere, idStire );
+    }
+
+    public LiveData < List < Stire > > getStiri( ) {
+        return mGameMediator.getStiri(  );
     }
 
     public void insertVot( VotAnonim votAnonim ) {
         mGameMediator.insertVot( votAnonim );
     }
+
+    public void insertUtilizator( Utilizator utilizator ) {
+        mGameMediator.insertUtilizator( utilizator );
+    }
+
 }

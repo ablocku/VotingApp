@@ -16,7 +16,7 @@
         <activity
             android:name=".presentation.view.NewsActivity"
             android:label="@string/title_activity_news"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".presentation.view.RecyclerViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|colorMode" />

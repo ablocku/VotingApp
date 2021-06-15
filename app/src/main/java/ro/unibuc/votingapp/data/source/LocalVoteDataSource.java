@@ -43,17 +43,23 @@ public final class LocalVoteDataSource extends VoteLocalRepository {
     }
 
     @Override
-    protected LiveData < List < Stire > > getStireById( String idAlegere, String idStire ) {
+    protected Stire getStireById( String idAlegere, String idStire ) {
         return mVoteDao.getStireById( idAlegere, idStire );
     }
 
     @Override
-    protected List < Utilizator > getUtilizator( String CNP ){
-        return mVoteDao.getUtilizator(CNP);
+    protected LiveData < List < Stire > > getStiri() {
+        return mVoteDao.getStiri();
+    }
+
+
+    @Override
+    protected List < Utilizator > getUtilizator( String CNP ) {
+        return mVoteDao.getUtilizator( CNP );
     }
 
     @Override
-    protected void insertUtilizator( Utilizator utilizator ){
+    protected void insertUtilizator( Utilizator utilizator ) {
         AppDatabase.databaseWriteExecutor.execute( () -> {
             try {
                 mVoteDao.insertUtilizator( utilizator );
@@ -130,7 +136,10 @@ public final class LocalVoteDataSource extends VoteLocalRepository {
         LiveData < List < Locatie > > getLocatii();
 
         @Query ( "SELECT * FROM Stire where idAlegere=:idAlegere and idStire=:idStire" )
-        LiveData < List < Stire > > getStireById( String idAlegere, String idStire );
+        Stire getStireById( String idAlegere, String idStire );
+
+        @Query ( "SELECT * FROM Stire" )
+        LiveData < List < Stire > > getStiri();
 
         @Query ( "SELECT * FROM Utilizator where idUtilizator=:CNP" )
         List < Utilizator > getUtilizator( String CNP );
